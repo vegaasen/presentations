@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ActivityWatch slides</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 style="line-height: 2em">
+                <img src="img/logo.png" style="display: inline-block; box-shadow: none; border: none; height: 1.5em; vertical-align: middle; background: rgba(0, 0, 0, 0)">
+                Java SE 10
+            </h2>
+            <p>
+                The java ecosystem just
+                <small>(ish)</small>
+                got released!
+                <br>changes, features, whats new and...ze future 😎
+            </p>
+
+            <small>
+                <p>
+                    Get jdk10 at <a href="https://github.com/ActivityWatch/activitywatch">Oracle</a> (boo)
+                    <br>
+                    <small>
+                        Slides available at <a href="https://github.com/vegaasen/presentations">github.com/vegaasen/presentations</a>
+                        (source on <a href="https://github.com/vegaasen/presentations">GitHub</a>)
+                    </small>
+                </p>
+            </small>
+
+        </section>
+
+        <section>
+            <h3>
+                JEPs
+                <small>(JDK Enhancement Proposal)</small>
+                included
+            </h3>
+
+            <ul class="small">
+                <li><a href="http://openjdk.java.net/jeps/286" target="_blank">JEP 286</a> Local Variable Type Inference
+                    <ul>
+                        <li>Enable less strict type inference</li>
+                        <li>Only possible for local variables (+within iterable loops)</li>
+                    </ul>
+                </li>
+                <li><a href="http://openjdk.java.net/jeps/322" target="_blank">JEP 322</a> Time-Based Release Versioning</li>
+                <li><a href="http://openjdk.java.net/jeps/304" target="_blank">JEP 304</a> Garbage-Collector Interface</li>
+                <li><a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> Parallel Full GC for G1 🤓</li>
+                <li><a href="http://openjdk.java.net/jeps/316" target="_blank">JEP 316</a> Heap Allocation on Alternative Memory Devices</li>
+                <li><a href="http://openjdk.java.net/jeps/296" target="_blank">JEP 296</a> Consolidate the JDK Forest into a Single Repository</li>
+                <li><a href="http://openjdk.java.net/jeps/319" target="_blank">JEP 319</a> Root Certificates</li>
+                <li><a href="http://openjdk.java.net/jeps/317" target="_blank">JEP 317</a> Experimental Java-Based JIT Compiler</li>
+                <li><a href="http://openjdk.java.net/jeps/312" target="_blank">JEP 312</a> Thread-Local Handshakes</li>
+                <li><a href="http://openjdk.java.net/jeps/313" target="_blank">JEP 313</a> Remove the Native-Header Generation Tool</li>
+            </ul>
+        </section>
+
+        <section>
+            <section><h3><a href="http://openjdk.java.net/jeps/322" target="_blank">JEP 322</a> Time-Based Release Versioning</h3></section>
+            <section>
+                <h3>Time-Based Release Versioning</h3>
+                <div class="center">
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Time-Based Release Versioning<br><br> Six-month release model<br><br>The March 2018 release is <a href="https://twitter.com/hashtag/JDK10?src=hash&amp;ref_src=twsrc%5Etfw">#JDK10</a>,
+                        the September 2018 release is <a href="https://twitter.com/hashtag/JDK11?src=hash&amp;ref_src=twsrc%5Etfw">#JDK11</a>, and so forth. <a href="https://t.co/wua7AV4nYX">pic.twitter.com/wua7AV4nYX</a></p>&mdash; Java (@java) <a
+                            href="https://twitter.com/java/status/969287657015664640?ref_src=twsrc%5Etfw">March 1, 2018</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </section>
+            <section class="small">
+                <div>
+                    <ul>
+                        <li>new releases every 6
+                            <small>th</small>
+                            months
+                        </li>
+                        <li>uses <code>$FEATURE.$INTERIM.$UPDATE.$PATCH</code> whilst defining release</li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3><a href="http://openjdk.java.net/jeps/304" target="_blank">JEP 304</a>/<a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> GC improvements</h3>
+            </section>
+            <section class="small">
+                <h4><a href="http://openjdk.java.net/jeps/304" target="_blank">JEP 304</a> Garbage-Collector Interface</h4>
+                <div>
+                    <ul>
+                        <li>Increase code isolation of different garbage collectors</li>
+                        <li>Introduces a clean interface for garbage collectors</li>
+                        <li>Advantages
+                            <ul>
+                                <li>easier to exclude a GC from a JDK build</li>
+                                <li> easier to add a new GC without it affecting the code base</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h4><a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> Parallel Full GC for G1 🤓</h4>
+                <div class="left-align">
+                    <p>
+                        <small>In Java 9, G1 was made the <span class="text-underline">default GC</span>, which was designed to avoid full collections, but when the concurrent collections couldn’t reclaim memory quick enough it would end up falling
+                            back on a full GC, and here is where
+                            the problem lies.
+                        </small>
+                    </p>
+                    <p>
+                        <small>The aim of <a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> is to parallelize the full GC algorithm so that in the unlikely event of a G1 Full GC then the same number of threads can be used as in
+                            the concurrent collections.
+                        </small>
+                    </p>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <p><a href="http://openjdk.java.net/jeps/316" target="_blank">JEP 316</a> Heap Allocation on Alternative Memory Devices 👏</p>
+            <p><a href="http://openjdk.java.net/jeps/296" target="_blank">JEP 296</a> Consolidate the JDK Forest into a Single Repository 😴</p>
+            <p>
+                <a href="http://openjdk.java.net/jeps/319" target="_blank">JEP 319</a> Root Certificates<br/>
+                <small class="gray">i18n.t('openJDK finally an actual option for devs 🤩')</small>
+            </p>
+        </section>
+
+        <section>
+            <section><h3><a href="http://openjdk.java.net/jeps/317" target="_blank">JEP 317</a> Experimental Java-Based JIT Compiler</h3></section>
+            <section>
+                <div>
+                    <ul class="small">
+                        <li>Was added in Java 9, but living "in the shadows"</li>
+                        <li>
+                            Possible to enable now 🎉<br/>
+                            <minor>not recommended for production 🤦‍</minor>
+                            <br/>
+                            <minor>can lead to increased heap and startup times 🤦‍</minor>
+                        </li>
+                        <li>Only supported on Linux/x64</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="left-align">
+                    <pre><code data-noescape>java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler -jar myCoolJar.jar</code></pre>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <h4><a href="http://openjdk.java.net/jeps/313" target="_blank">JEP 313</a> Remove the Native-Header Generation Tool</h4>
+            <h1>😴</h1>
+            <div>
+                <p>related to <code class="code-white">javac</code> - superseeded by <code class="code-white">javac</code></p>
+            </div>
+        </section>
+
+        <section>
+            <section><h3><a href="http://openjdk.java.net/jeps/312" target="_blank">JEP 312</a> Thread-Local Handshakes</h3></section>
+            <section>
+                <p>Lays the groundwork for improved VM performance, by making it possible to execute a callback on application threads without performing a global VM safe-point (!!)</p>
+                <p>Means that a running JVM could stop individual threads and not just all of them</p>
+            </section>
+
+            <section>
+                <h4>Improvements enabled</h4>
+                <ul>
+                    <li>Reducing the impact of acquiring a stack trace sample (e.g. for profiling and callback)</li>
+                    <li>Improving biased locking by only stopping individual threads for revoking biases</li>
+                    <li>Better stack trace sampling by reducing reliance on signals</li>
+                    <li>Removing some memory barriers from the JVM</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3><a href="http://openjdk.java.net/jeps/286" target="_blank">JEP 286</a> Local Variable Type Inference</h3>
+            </section>
+            <section>
+                <h4></h4>
+                <ul class="small">
+                    <li>
+                        Started in 2016<br/>
+                        <minor>ppl went apeshit 🦍💩</minor>
+                    </li>
+                    <li>Part of Oracle' process to simplify code-writing</li>
+                    <li>Reduces verbosity of the language</li>
+                    <li>Still keeps the type safety</li>
+                    <li>
+                        Can not be used everywhere. I'm looking at you;
+                        <ul>
+                            <li>Method parameters</li>
+                            <li>Constructor parameters</li>
+                            <li>Method return types</li>
+                            <li>Fields</li>
+                            <li>Catch formals (or any other kind of variable declaration)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        ..on the other hand, the following scopes are supported ✅;
+                        <ul>
+                            <li>Local variables with initializer</li>
+                            <li>Indexes in the enhanced for-loop</li>
+                            <li>Locals declared in a traditional for-loop</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="size-medium">
+                <h3>alright alright, but how do I use it?!</h3>
+                <p>
+                    There was a long discussion throughout the community regarding which syntactical sugar to use (i.e which identifier to use). The syntax and variations
+                    that were discussed included usage of the following options
+                </p>
+                <pre><code class="lang-java" data-trim>var myCoolVariable = 100.0;
+val myCoolVariable = 100.0;
+let myCoolVariable = 100.0;
+auto myCoolVariable = 100.0;
+++</code></pre>
+                The syntax that were selected for type inference as we know if from other languages, was:
+                <pre><code class="lang-java" data-trim>var myCoolVariable = 100.0;</code></pre>
+                ..in other words:
+                <pre><code class="lang-java" data-trim>var</code></pre>
+            </section>
+            <section>
+                <h3>err.. <code class="code-white">var</code> you say?</h3>
+                <img src="img/graph-jep286.png">
+                <p>Oracle decided upon using option #2, <code class="code-white">var</code>, as the designated identifier</p>
+            </section>
+            <section>
+                <h4>examples, examples, examples!!</h4>
+            </section>
+            <section>
+                <h4>Local variables</h4>
+                <pre><code class="lang-java">Map&lt;String, List&lt;String&gt;&gt; countryToCity = new HashMap&lt;&gt;();
+for (Map.Entry&lt;String, List&lt;String&gt;&gt; citiesInCountry : countryToCity.entrySet()) {
+  List&lt;String&gt; cities = citiesInCountry.getValue();
+  // ...
+}</code></pre>
+                <pre><code class="lang-java">var countryToCity = new HashMap&lt;String, List&lt;City&gt;&gt;();
+for (var citiesInCountry : countryToCity.entrySet()) {
+  var cities = citiesInCountry.getValue();
+  // ...
+}</code></pre>
+            </section>
+            <section>
+                <h4>Try-with-resources</h4>
+                <pre><code class="lang-java">Path path = Paths.get(&quot;src/web.log&quot;);
+try (Stream&lt;String&gt; lines = Files.lines(path)){
+    long warningCount
+            = lines
+                .filter(line -&gt; line.contains(&quot;WARNING&quot;))
+                .count();
+    System.out.println(&quot;Found &quot; + warningCount + &quot; warnings in the
+log file&quot;);
+} catch (IOException e) {
+    e.printStackTrace();
+}</code></pre>
+                <pre><code class="lang-java">var path = Paths.get(&quot;src/web.log&quot;);
+try (var lines = Files.lines(path)){
+    var warningCount
+            = lines
+                .filter(line -&gt; line.contains(&quot;WARNING&quot;))
+                .count();
+    System.out.println(&quot;Found &quot; + warningCount + &quot; warnings in the
+log file&quot;);
+} catch (IOException e) {
+    e.printStackTrace();
+}</code></pre>
+            </section>
+            <section>
+                <h4>Doesn't work</h4>
+                <pre><code class="lang-java">var ints = {0, 1, 2};
+var appendSpace = a -> a + " ";
+var compareString = String::compareTo
+var id = 123
+id = "456" // nop
+</code></pre>
+            </section>
+            <section class="small">
+                <div>
+                    <h4>Takeaways</h4>
+                    <p>
+                        I think it can be easy to over-use this everywhere - but, in my own eyes that could hurt your code and readability a bit. If used extensively,
+                        it is prone to complications. For some cases, like the following;
+                    </p>
+                    <pre><code class="lang-java">Map&lt;String, List&lt;String&gt;&gt; countryToCity = new HashMap&lt;&gt;();</code></pre>
+                    <pre><code class="lang-java">TrackingParcelCargoWithParcels&lt;AnonymousCustomer, SimpleOrder&lt;Book&gt;&gt; parcels = createTrackingParcelCargoWithParcels(customer, order);</code></pre>
+                    <p>..it kinda makes sense to use the new form of variable defining</p>
+                </div>
+                <div>
+                    <h4>The compiler..</h4>
+                    <p>Oh, almost forgot. The compiler itself translates your code to the good'ol fashinable Java code as we know it. So, you may be as fancy as you like, but the compiler does not care and issues full fledge non-var mode 🤓</p>
+                </div>
+            </section>
+        </section>
+
+        <section class="small">
+            <h3>Conclusion</h3>
+            <div>
+                <ul class="list_emoji list_star">
+                    <li>A bit torn</li>
+                    <li>Some nice features</li>
+                    <li>New release-schedule!</li>
+                    <li>New release-schedule!!</li>
+                    <li>Performance seems to be in focus</li>
+                    <li>Removal of many existing packages and old not used features</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h3>Whats next?!</h3>
+            <p>Java SE 11 is due in 81 days
+                <small>(ish)</small>
+                !
+            </p>
+            <ul class="list_emoji list_star">
+                <li>Dynamic Class-File Constants</li>
+                <li>Epsilon: A No-Op Garbage Collector</li>
+                <li>Remove the Java EE and CORBA Modules</li>
+                <li>HTTP Client</li>
+                <li>Local-Variable Syntax for Lambda Parameters</li>
+            </ul>
+        </section>
+
+        <section class="small">
+            <h3>That's all!</h3>
+            <p>
+                This was a quick introduction to the highlights of Java SE 10. Read more at <a href="http://www.oracle.com/technetwork/java/javase/10-relnote-issues-4108729.html">Oracle</a> to get more details, if needed.
+            </p>
+            <small>
+                oh..and don't forget all the goodies we got with <a href="http://www.baeldung.com/new-java-9">Java SE 9</a> as well! :-)
+            </small>
+            <p>
+                <small>
+                    <small>Complete source available on <a href="https://github.com/vegaasen/presentations">@github</a></small>
+                </small>
+            </p>
+        </section>
+    </div>
+
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Reveal.initialize({
+        width: 1150,
+        height: 700,
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        shuffle: false,
+        fragments: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoSlide: 0,
+        autoSlideStoppable: true,
+        autoSlideMethod: Reveal.navigateNext,
+        mouseWheel: false,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transitionSpeed: 'default', // default/fast/slow
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        viewDistance: 3,
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null
+
+    });
+</script>
+</body>
+</html>
