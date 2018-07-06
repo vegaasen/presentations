@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ActivityWatch slides</title>
+    <title>Java SE 10</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
     <!-- formats :-) -->
     <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
@@ -108,21 +108,24 @@
                             </ul>
                         </li>
                     </ul>
+                    <p>
+                        <small class="gray">..although..this is primarily targeted GC developers..</small>
+                    </p>
                 </div>
             </section>
-            <section>
+            <section class="small">
                 <h4><a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> Parallel Full GC for G1 🤓</h4>
-                <div class="left-align">
+                <div>
+                    <ul>
+                        <li>Introduced in Java 9 as default</li>
+                        <li>G1 designed to avoid FullGC (aka. stop-the-world)</li>
+                        <li>G1 not failsafe. Can go FullGC on memory reclaims not happening faster than the minor collections</li>
+                        <li>G1 was single-threaded (Mark-sweep-compact)</li>
+                        <li>"Parallel Full GC for G1" enables parllelability to perform collections quicker (possibly avoiding the above)</li>
+                    </ul>
                     <p>
-                        <small>In Java 9, G1 was made the <span class="text-underline">default GC</span>, which was designed to avoid full collections, but when the concurrent collections couldn’t reclaim memory quick enough it would end up falling
-                            back on a full GC, and here is where
-                            the problem lies.
-                        </small>
-                    </p>
-                    <p>
-                        <small>The aim of <a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> is to parallelize the full GC algorithm so that in the unlikely event of a G1 Full GC then the same number of threads can be used as in
-                            the concurrent collections.
-                        </small>
+                        The aim of <a href="http://openjdk.java.net/jeps/307" target="_blank">JEP 307</a> is to parallelize the full GC algorithm so that in the unlikely event of a G1 Full GC then the same number of threads can be used as in the
+                        concurrent collections.
                     </p>
                 </div>
             </section>
@@ -132,7 +135,9 @@
             <p><a href="http://openjdk.java.net/jeps/316" target="_blank">JEP 316</a> Heap Allocation on Alternative Memory Devices 👏</p>
             <p><a href="http://openjdk.java.net/jeps/296" target="_blank">JEP 296</a> Consolidate the JDK Forest into a Single Repository 😴</p>
             <p>
-                <a href="http://openjdk.java.net/jeps/319" target="_blank">JEP 319</a> Root Certificates<br/>
+                <a href="http://openjdk.java.net/jeps/319" target="_blank">JEP 319</a> Root Certificates
+                <minor>bundled in cacerts</minor>
+                <br/>
                 <small class="gray">i18n.t('openJDK finally an actual option for devs 🤩')</small>
             </p>
         </section>
@@ -155,7 +160,7 @@
             </section>
             <section>
                 <div class="left-align">
-                    <pre><code data-noescape>java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler -jar myCoolJar.jar</code></pre>
+                    <pre><code class="lang-java" data-noescape>java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler -jar myCoolJar.jar</code></pre>
                 </div>
             </section>
         </section>
@@ -164,7 +169,7 @@
             <h4><a href="http://openjdk.java.net/jeps/313" target="_blank">JEP 313</a> Remove the Native-Header Generation Tool</h4>
             <h1>😴</h1>
             <div>
-                <p>related to <code class="code-white">javac</code> - superseeded by <code class="code-white">javac</code></p>
+                <p><code class="code-white">javah</code> - is now superseded by <code class="code-white">javac</code></p>
             </div>
         </section>
 
@@ -176,13 +181,27 @@
             </section>
 
             <section>
-                <h4>Improvements enabled</h4>
-                <ul>
-                    <li>Reducing the impact of acquiring a stack trace sample (e.g. for profiling and callback)</li>
-                    <li>Improving biased locking by only stopping individual threads for revoking biases</li>
-                    <li>Better stack trace sampling by reducing reliance on signals</li>
-                    <li>Removing some memory barriers from the JVM</li>
-                </ul>
+                <h3>Improvements enabled</h3>
+                <div class="left-align">
+                    <ul>
+                        <li>Reducing the impact of acquiring a stack trace sample (e.g. for profiling and callback)</li>
+                        <li>Improving biased locking by only stopping individual threads for revoking biases</li>
+                        <li>Removing some memory barriers from the JVM</li>
+                        <li>Not used directly by us developers</li>
+                    </ul>
+                </div>
+                <h3>Example</h3>
+                <div class="left-align">
+                    <ul>
+                        <li>Enables some threads to continue on a FullGC</li>
+                        <li>Better performance on stack trace sampling</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="left-align">
+                    <pre><code class="lang-java" data-noescape>java -XX:ThreadLocalHandshakes={false|true(def)} -jar myCoolJar.jar</code></pre>
+                </div>
             </section>
         </section>
 
@@ -200,6 +219,7 @@
                     <li>Part of Oracle' process to simplify code-writing</li>
                     <li>Reduces verbosity of the language</li>
                     <li>Still keeps the type safety</li>
+                    <li>Not <strong>particular</strong> useful (reducing "redundancy")</li>
                     <li>
                         Can not be used everywhere. I'm looking at you;
                         <ul>
@@ -285,10 +305,20 @@ log file&quot;);
             <section>
                 <h4>Doesn't work</h4>
                 <pre><code class="lang-java">var ints = {0, 1, 2};
-var appendSpace = a -> a + " ";
+// --v
+var addSpace = a -> a + " ";
+// --v
 var compareString = String::compareTo
+// --v
 var id = 123
-id = "456" // nop
+id = "456"
+// --v
+private var getFoo() {
+    return "foo";
+}
+// --v
+var kolli = new ArrayList&lt;Kolli&gt;();
+kolli = new LinkedList&lt;&gt;(); // does not infer to List&lt;Kolli&gt;
 </code></pre>
             </section>
             <section class="small">
@@ -313,28 +343,32 @@ id = "456" // nop
             <h3>Conclusion</h3>
             <div>
                 <ul class="list_emoji list_star">
-                    <li>A bit torn</li>
-                    <li>Some nice features</li>
+                    <li>Some nice (mostly under ze hood) features</li>
                     <li>New release-schedule!</li>
-                    <li>New release-schedule!!</li>
-                    <li>Performance seems to be in focus</li>
+                    <li>Platform taken a complete 180&deg; with Java SE 9/10+</li>
+                    <li>Performance seems to be in focus (🤑)</li>
                     <li>Removal of many existing packages and old not used features</li>
+                    <li>Exciting to follow the community. Will it keep up with the release schedule?</li>
                 </ul>
             </div>
         </section>
 
-        <section>
+        <section class="small">
             <h3>Whats next?!</h3>
-            <p>Java SE 11 is due in 81 days
+            <p>Java SE 11 is due in <a href="http://www.java-countdown.xyz/">81 days</a>
                 <small>(ish)</small>
-                !
+                ! Inclusion proposals:
             </p>
             <ul class="list_emoji list_star">
-                <li>Dynamic Class-File Constants</li>
-                <li>Epsilon: A No-Op Garbage Collector</li>
-                <li>Remove the Java EE and CORBA Modules</li>
-                <li>HTTP Client</li>
-                <li>Local-Variable Syntax for Lambda Parameters</li>
+                <li><a href="http://openjdk.java.net/jeps/309">JEP-309</a> Dynamic Class-File Constants</li>
+                <li><a href="http://openjdk.java.net/jeps/318">JEP-318</a> Epsilon: A No-Op Garbage Collector <small class="gray">passive GC, bounded alloc, low latency overhead - expense of mem-👣 and mem-throughput</small></li>
+                <li><a href="http://openjdk.java.net/jeps/320">JEP-320</a> Remove the Java EE and CORBA Modules 👋👋👋👋
+                    <pre><code>java.xml.ws, java.xml.ws.annotation, jdk.xml.ws, java.xml.bind, jdk.xml.bind</code></pre>
+                </li>
+                <li><a href="http://openjdk.java.net/jeps/321">JEP-321</a> HTTP Client
+                    <small class="gray">was already in jdk9/10 too, but as incubator. totally rewritten for jdk11 (nb/io)</small>
+                </li>
+                <li><a href="http://openjdk.java.net/jeps/323">JEP-323</a> Local-Variable Syntax for Lambda Parameters (uniformity? 🤨)</li>
             </ul>
         </section>
 
