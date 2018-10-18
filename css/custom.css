@@ -74,3 +74,7 @@ ul.list_none {
     color: #000;
     background: #ffffff;
 }
+
+strong {
+    color: coral;
+}

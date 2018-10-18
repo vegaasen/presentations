@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>React Context API</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="../css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 style="line-height: 2em">
+                <img src="img/logo.png" style="display: inline-block; box-shadow: none; border: none; height: 1.5em; vertical-align: middle; background: rgba(0, 0, 0, 0)">
+                Context API
+            </h2>
+            <p>
+                Does it change everything
+                <small>(no)</small>
+                ?
+            </p>
+
+            <small>
+                <p>
+                    Read more at <a href="https://reactjs.org/docs/context.html">reactjs.org/context</a>
+                    <br>
+                    <small>
+                        Slides available at <a href="https://github.com/vegaasen/presentations">github.com/vegaasen/presentations</a>
+                        (source on <a href="https://github.com/vegaasen/presentations">GitHub</a>)
+                    </small>
+                </p>
+            </small>
+
+        </section>
+
+        <section class="small">
+            <img alt="" src="img/context-vs-redux.png"/>
+        </section>
+
+        <section>
+            <h3>React context in a nutshell</h3>
+
+            <ul class="small">
+                <li>Appeared in React 16
+                    <small>(not entirely true)</small>
+                </li>
+                <li>Native support to simply prop-drilling</li>
+                <li>API:
+                    <ul>
+                        <li>Context.Consumer</li>
+                        <li>Context.Provider</li>
+                    </ul>
+                </li>
+                <li>Simple to integrate 😎</li>
+                <li>Supports context within context within context within context within .. 🦑</li>
+            </ul>
+        </section>
+
+        <section>
+            <section><h3><a href="https://reactjs.org/docs/context.html#api" target="_blank">API</a> supported by React Context</h3></section>
+            <section>
+                <h3><code>React.createContext()</code></h3>
+                <div class="center">
+                    <pre><code>const {Provider, Consumer} = React.createContext(defaultValue);</code></pre>
+                    <p>
+                        Creates a <code>{ Provider, Consumer }</code> pair. When React renders a context <code>Consumer</code>, it will read the
+                        current context value from the closest matching <code>Provider</code> above it in the tree. Meaning, you can have multiple <code>Providers</code> located
+                        throughout your application, nested.
+                    </p>
+                </div>
+            </section>
+            <section class="small">
+                <h3><code>Provider</code></h3>
+                <div class="center">
+                    <pre><code>&lt;Provider value={/* some value */}&gt;</code></pre>
+                    <p>A React component that allows Consumers to subscribe to context changes.</p>
+                    <p>The value which is passed to the provider <code>value={/**/}</code> can be accessed by any of the descendants of the enclosing <code>Provider</code></p>
+                    <p>Providers can also be nested to simplify overriding values deeper within the tree</p>
+                </div>
+            </section>
+            <section class="small">
+                <h3><code>Consumer</code></h3>
+                <div class="center">
+                    <pre><code>&lt;Consumer&gt;
+  {value => /* render something based on the context value */}
+&lt;/Consumer&gt;</code></pre>
+                    <div>
+                        <ul>
+                            <li>A React component that subscribes to context changes</li>
+                            <li>Requires a function as child - which is the current context value from the closest <code>Provider</code></li>
+                            <li>On no <code>Provider</code> found for the node, whatever was defined in the <code>defaultValue</code> will be provided</li>
+                            <li>
+                                💡 Propagation of values from the <code>Provider</code> to any of the <code>Consumer</code> is
+                                <strong>not</strong> subject to the <code>shouldComponentUpdate()</code>-method
+                            </li>
+                            <li>💡 Internally changes determined by <code>Object.is()</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h4>When to use?</h4>
+                <div>
+                    <ul>
+                        <li>Need to passing props more than two times</li>
+                        <li>Need to passing props more than three times</li>
+                        <li>Need to passing props more than n times</li>
+                        <li>Application not big enough
+                            <ul>
+                                <li>..to warrant Redux</li>
+                                <li>..to warrant MobX</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+
+        <section class="small">
+            <h1>Example time 🚀</h1>
+        </section>
+
+        <section class="small">
+            <h3>Conclusion</h3>
+            <ul class="list_emoji list_star">
+                <li>Can solve props-drilling</li>
+                <li>Is not a replacement for Redux/MobX
+                    <ul>
+                        <li>No devTools as in Redux</li>
+                        <li>No "middleware" for centralizing application logic</li>
+                    </ul>
+                </li>
+                <li>Alternative to React-Redux (state management)</li>
+                <li>Shifting to React-Context from React-Redux is "pointless" (pun intended)</li>
+            </ul>
+        </section>
+
+        <section class="small">
+            <h3>questions, questions, questions</h3>
+            <p>
+                <small>
+                    <small>Complete source available on <a href="https://github.com/vegaasen/presentations">@github</a></small>
+                </small>
+            </p>
+        </section>
+    </div>
+
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  Reveal.initialize({
+    width: 1150,
+    height: 700,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    rtl: false,
+    shuffle: false,
+    fragments: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    autoSlideMethod: Reveal.navigateNext,
+    mouseWheel: false,
+    hideAddressBar: true,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    viewDistance: 3,
+    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+    // Number of pixels to move the parallax background per slide
+    // - Calculated automatically unless specified
+    // - Set to 0 to disable movement along an axis
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null,
+
+  });
+</script>
+</body>
+</html>
