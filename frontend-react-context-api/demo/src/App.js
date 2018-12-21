@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-//const EmptyContext = React.createContext('Am I missing? 👀');
+const EmptyContext = React.createContext('Am I missing? 👀');
 const WrapperContext = React.createContext();
 const UserContext = React.createContext('');
 const PersonContext = React.createContext();
@@ -17,13 +17,14 @@ class BaseProvider extends Component {
 }
 
 class PersonProvider extends Component {
-  state = {name: 'Vegard Aasen', age: 33, cool: true};
+  state = {name: 'Vegard Aasen', age: 33, cool: true, cloths: ''};
 
   render () {
     const values = {
       state: this.state,
       growAYearOlder: () => this.setState({age: this.state.age + 1}),
       updateName: newName => this.setState({name: newName}),
+      changeCloths: cloths => this.setState({cloths: cloths})
     };
     return <PersonContext.Provider value={values}>{this.props.children}</PersonContext.Provider>
   }
@@ -31,7 +32,7 @@ class PersonProvider extends Component {
 
 const Family = () => (
   <UserContext.Consumer>
-    {user => <div className="familiy"><Person/> {user.state.family.map((f, i) => <Person key={i} {...f}/>)}</div>}
+    {user => <div className="familiy"><Person/></div>}
   </UserContext.Consumer>
 );
 
@@ -57,6 +58,7 @@ class Person extends Component {
             <React.Fragment>
               <p>Age: {context.state.age}</p>
               <p>Name: {context.state.name}</p>
+              <p>Cloths: {context.state.cloths}</p>
               <button onClick={context.growAYearOlder}>Congrats! <span role='img'>🍰</span></button>
             </React.Fragment>
           )}
@@ -66,13 +68,24 @@ class Person extends Component {
   }
 }
 
+const ChangeClothsComponent = () => {
+  return (
+    <PersonContext.Consumer>
+      {(person) => (
+        <>Cloths: <input type='text' onChange={e => person.changeCloths(e.target.value)}/></>
+      )}
+    </PersonContext.Consumer>
+  )
+};
+
 const CoolComponent = () => (
   <WrapperContext.Consumer>
     {() => (
       <div style={{backgroundColor: 'antiquewhite'}}>
         <h1>Awesome app</h1>
-        <Family/>
+        <Family persons={[{}]}/>
         <NameChanger/>
+        <ChangeClothsComponent person={{name: 'vegard'}}/>
       </div>
     )}
   </WrapperContext.Consumer>

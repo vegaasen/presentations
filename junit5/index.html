@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Junit 5 / Mockito 2 intro</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="../css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 style="line-height: 2em">
+                <img src="img/logo.png" style="display: inline-block; box-shadow: none; border: none; height: 1.5em; vertical-align: middle; background: rgba(0, 0, 0, 0)">
+                JUnit 5<br/> &amp;<br/><code>Mock</code>ito
+            </h2>
+            <p>A (very) short (but nice 🤔?) introduction</p>
+            <small>
+                <p>
+                <pre>@vegaasen</pre>
+            </small>
+        </section>
+
+        <section>
+            <h1>
+                <pre>() => new Demo()</pre>
+            </h1>
+        </section>
+
+        <section>
+            <section><h3>Migration from Mockito 1.x => Mockito 2.x</h3></section>
+            <section>
+                <h3>Learnings &amp; misc</h3>
+                <ul class="small">
+                    <li>cglib -> bytebuddy as "mock baking factory" --> performance gains!</li>
+                    <li>Hamcrest dependency gone 👏</li>
+                    <li>Performance gains u say? Due to bytebuddy it can be quicker, however it is notably. "It depends"</li>
+                    <li>java8 support (e.g mock default interface methods and more)</li>
+                    <li>Mocking and Spying of final + abstract (no-arg) classes 😱</li>
+                    <li>
+                        <pre>any(Clazz.class) // isNull() can be used</pre>
+                        does not support null (largest one)
+                    </li>
+                    <li>
+                        <pre>any()</pre>
+                        should be favored
+                    </li>
+                    <li>Can not be done in parallel with Mockito 1.x 🥶</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section><h3>Migration from JUnit 4 => JUnit 5?</h3></section>
+            <section>
+                <h3>Official tips</h3>
+                <div class="center">
+                    <ul class="small">
+                        <li>
+                            <p>Annotations reside in the <code>org.junit.jupiter.api</code> package.</p>
+                        </li>
+                        <li>
+                            <p>Assertions reside in <code>org.junit.jupiter.api.Assertions</code>.</p>
+                        </li>
+                        <li>
+                            <p>Assumptions reside in <code>org.junit.jupiter.api.Assumptions</code>.</p>
+                        </li>
+                        <li>
+                            <p><code>@Before</code> and <code>@After</code> no longer exist; use <code>@BeforeEach</code> and <code>@AfterEach</code> instead.</p>
+                        </li>
+                        <li>
+                            <p><code>@BeforeClass</code> and <code>@AfterClass</code> no longer exist; use <code>@BeforeAll</code> and <code>@AfterAll</code> instead.</p>
+                        </li>
+                        <li>
+                            <p><code>@Ignore</code> no longer exists: use <code>@Disabled</code> instead.</p>
+                        </li>
+                        <li>
+                            <p><code>@Category</code> no longer exists; use <code>@Tag</code> instead.</p>
+                        </li>
+                        <li>
+                            <p><code>@RunWith</code> no longer exists; superseded by <code>@ExtendWith</code>.</p>
+                        </li>
+                        <li>
+                            <p><code>@Rule</code> and <code>@ClassRule</code> no longer exist; superseded by <code>@ExtendWith</code>; see the following section for partial rule support.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="small">
+                <h3>Unofficial tips</h3>
+                <div>
+                    <ul>
+                        <li>Don't rush to convert tests "just because.."</li>
+                        <li>Use plugins like <a href="https://blog.jetbrains.com/idea/2017/11/intellij-idea-2017-3-junit-support/" target="_blank">
+                            JUnit 4 -> JUnit 5 conversion
+                        </a> in IntelliJ (can be executed on package-level. Hit-rate of 80-90% 🎉
+                        </li>
+                        <li>Embrace parameterized tests..(⏱🧨?)</li>
+                        <li>Update today! side-by-side is nicely supported</li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <section>
+            <h1>🎄</h1>
+        </section>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  Reveal.initialize({
+    width: 1150,
+    height: 700,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    rtl: false,
+    shuffle: false,
+    fragments: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    autoSlideMethod: Reveal.navigateNext,
+    mouseWheel: false,
+    hideAddressBar: true,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    viewDistance: 3,
+    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+    // Number of pixels to move the parallax background per slide
+    // - Calculated automatically unless specified
+    // - Set to 0 to disable movement along an axis
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null
+
+  });
+</script>
+</body>
+</html>
