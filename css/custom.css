@@ -78,3 +78,7 @@ ul.list_none {
 strong {
     color: coral;
 }
+
+.text-strike {
+    text-decoration: line-through;
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>React performance</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="../css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 style="line-height: 2em">
+                <img src="img/logo.png" style="display: inline-block; box-shadow: none; border: none; height: 1.5em; vertical-align: middle; background: rgba(0, 0, 0, 0)">
+                Performance
+            </h2>
+            <p>
+                Simple optimizations with code splitting and more
+            </p>
+            <small>
+                <p>
+                    <small>
+                        Slides available at <a href="https://github.com/vegaasen/presentations">github.com/vegaasen/presentations</a>
+                        (source on <a href="https://github.com/vegaasen/presentations">GitHub</a>)
+                    </small>
+                </p>
+            </small>
+        </section>
+        <section>
+            <h3>Performance points</h3>
+            <ul class="small">
+                <li>Service workers</li>
+                <li>React hooks</li>
+                <li>React lazy + suspense</li>
+                <li>React memo/PureComponent</li>
+                <li>Async/Await</li>
+                <li>Modules</li>
+                <li>Gzip resources</li>
+                <li>Webpack tweaks (chunks etc)</li>
+            </ul>
+        </section>
+        <section>
+            <h3><a href="https://reactjs.org/docs/context.html#api" target="_blank">Service workers / Workbox</a> 🤨</h3>
+        </section>
+        <section>
+            <section><h3><a href="https://reactjs.org/docs/context.html#api" target="_blank">Lazy/Suspense</a> 🤨</h3></section>
+            <section>
+                <h3><code>React.lazy(<>)</code></h3>
+                <div class="center">
+                    <pre><code>import MyLazyComponent from './common/MyLazyComponent';</code></pre>
+                    <h4>vs</h4>
+                    <pre><code>const MyLazyComponent = React.lazy(() => import('./common/MyLazyComponent'));</code></pre>
+                    <p>Basically same as import, and also works quite similar, with the exception that the component is now loaded on demand</p>
+                    <p>
+                    <pre><code>on demand</code></pre>
+                    == in chunks</p>
+                </div>
+            </section>
+            <section>
+                <h3>🤨🤨🤨🤨🤨🤨🤨🤨🤨What about "vendor"-content?🤨🤨🤨🤨🤨🤨🤨🤨</h3>
+            </section>
+            <section>
+                <p>Vendor specific content is also lazy-loaded, as it is part of the component being loaded and not the core application per-se</p>
+            </section>
+            <section><h3>...oh and you can do this for css sources as well 🤡</h3></section>
+            <section>
+                <h2>OMG I'M OFF TO DO THIS EVERYWHERE!</h2>
+            </section>
+            <section>
+                <p>Don't. Rember that for each of the component tree there will be chunks</p>
+                <p>Do, however, use this on components that is often loaded and that can appear on multiple occations within the app</p>
+                <p>..also, if you e.g do this for one of the core components, it will not make any senes..</p>
+                <p>Got routes? Routing is a good location to start!</p>
+            </section>
+            <section>
+                <pre><code>
+        &lt;Suspense fallback={&lt;Spinner/&gt;}&gt;
+          &lt;ApplicationMessages/&gt;
+          &lt;Switch&gt;
+            &lt;Route exact path="/feedback" render={props =&gt; &lt;Feedback {...props}/&gt;}/&gt;
+            &lt;Route exact path="/track-multiple" render={props =&gt; &lt;TrackMultiple {...props}/&gt;}/&gt;
+            &lt;Route exact path="/:query" component={props =&gt; &lt;Tracking {...props}/&gt;}/&gt;
+            &lt;Route exact path="/" component={props =&gt; &lt;Tracking {...props}/&gt;}/&gt;
+            &lt;Route component={props =&gt; &lt;NotFound {...props}/&gt;}/&gt;
+          &lt;/Switch&gt;
+        &lt;/Suspense&gt;
+                </code></pre>
+                <p>
+                    suspense!?
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h4>React.lazy() + <a href="" target="_blank" rel="nofollow noreferrer">Suspense</a></h4>
+                <div>
+                    Suspense is more or less a mechanism to enable lazy-loading to use a fallback mechanism whilst waiting for component-load, simple as that.
+                    In plain English: It works as a fallback feature (however, this is subject to might change in the future..)
+                </div>
+            </section>
+            <section>
+                <pre><code>
+        &lt;Suspense fallback={&lt;Spinner/&gt;}&gt;
+          &lt;MySlowComponent/&gt;
+        &lt;/Suspense&gt;
+                </code></pre>
+            </section>
+        </section>
+
+        <section class="small">
+            <h4>Service workers</h4>
+            <p>What?</p>
+            <ul>
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </section>
+        <section>
+            <section class="small">
+                <h2>React memo/PureComponent</h2>
+            </section>
+            <section>
+                <p>Memo and PureComponent is quite straight forward. They exists for purely one reason only: to minimize unnecessary re-renders</p>
+            </section>
+            <section>
+                <div>Components</div>
+                <pre><code>shouldComponentUpdate(nextProps, nextState) {
+  // return true only if a certain condition is met
+}</code></pre>
+                <small><strong>should</strong> implement <code>shouldComponentUpdate</code></small>
+            </section>
+            <section>
+                <div>PureComponents</div>
+                <pre><code>import React, { PureComponent } from 'react';
+class AvatarComponent extends PureComponent {
+}</code></pre>
+                <small>👻 shallow object comparision</small>
+            </section>
+            <section>
+                <div>React.memo()</div>
+                <pre><code>import React, { memo } from 'react';
+export default React.memo(
+    IconSection,
+    (prevProps, nextProps) => prevProps.someValue !== nextProps.someValue
+)
+        // 👆 "areEqual(prevProps, nextProps)"</code></pre>
+                <small>
+                    Comes with a single method that <strong>can</strong> be implemented:
+                    <pre><code>areEqual(prevProps, nextProps); // 👉 const isSimilar(prev, next) => true;</code></pre>
+                </small>
+            </section>
+        </section>
+        <section>
+            <h2>Webpack configs?</h2>
+            <p>This is something that is activated by default if using the CRA application generator</p>
+            <pre><code>
+                module.exports {
+                    //..output:
+                    filename: 'tracking/static/js/[name].[chunkhash:8].js',
+                    chunkFilename: 'tracking/static/js/[name].[chunkhash:8].chunk.js',
+                    //..optimizations:
+                    splitChunks: {
+                      chunks: 'all',
+                      name: false,
+                    },
+                    //..MiniCssExtractPlugin
+                    chunkFilename: 'tracking/static/css/[name].[contenthash:8].chunk.css',
+                }
+            </code></pre>
+        </section>
+        <section>
+            <section><h2>Other things</h2></section>
+            <section><h3>Async/Await</h3></section>
+            <section><h3>Content gzip</h3></section>
+            <section>
+                <h3>server-side http/2</h3>
+            </section>
+            <section><h3>focus: first meaningful paint</h3></section>
+        </section>
+        <section>
+            <h3>Tips/Tricks</h3>
+            <ul>
+                <li><a href="https://reactjs.org/docs/perf.html">React DevTools profiler</a></li>
+                <li>Chrome DevTools Performance panel</li>
+                <li><a href="https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk">Lighthouse</a></li>
+            </ul>
+        </section>
+        <section class="small">
+            <h1>Conclusion</h1>
+            <p>do it</p>
+        </section>
+
+        <section class="small">
+            <h3>questions, questions, questions</h3>
+            <p>
+                <small>
+                    <small>Complete source available on <a href="https://github.com/vegaasen/presentations">@github</a></small>
+                </small>
+            </p>
+        </section>
+    </div>
+
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  Reveal.initialize({
+    width: 1150,
+    height: 700,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    rtl: false,
+    shuffle: false,
+    fragments: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    autoSlideMethod: Reveal.navigateNext,
+    mouseWheel: false,
+    hideAddressBar: true,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    viewDistance: 3,
+    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+    // Number of pixels to move the parallax background per slide
+    // - Calculated automatically unless specified
+    // - Set to 0 to disable movement along an axis
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null
+
+  });
+</script>
+</body>
+</html>
