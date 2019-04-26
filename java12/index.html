@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Java SE 10</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="../css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2 style="line-height: 2em">
+                <img src="img/logo.png" style="display: inline-block; box-shadow: none; border: none; height: 1.5em; vertical-align: middle; background: rgba(0, 0, 0, 0)">
+                Java SE 12
+            </h2>
+            <p>
+                The java ecosystem just
+                <small>(ish)</small>
+                got released!
+                <br>changes, features, whats new and...ze future 😎
+            </p>
+
+            <small>
+                <p>
+                    Get jdk12 at <a href="https://jdk.java.net/12/">OpenJDK</a>
+                    <br>
+                    <small>
+                        Slides available at <a href="https://github.com/vegaasen/presentations">github.com/vegaasen/presentations</a>
+                        (source on <a href="https://github.com/vegaasen/presentations">GitHub</a>)
+                    </small>
+                </p>
+            </small>
+
+        </section>
+
+        <section>
+            <h3>
+                JEPs
+                <small>(JDK Enhancement Proposal)</small>
+                included
+            </h3>
+
+            <ul class="small">
+                <li><a href="http://openjdk.java.net/jeps/189" target="_blank">JEP 189</a> Shenandoah: A Low-Pause-Time Garbage Collector</li>
+                <li><a href="http://openjdk.java.net/jeps/230" target="_blank">JEP 230</a> Microbenchmark Suite 😴</li>
+                <li><a href="http://openjdk.java.net/jeps/325" target="_blank">JEP 325</a> Switch Expressions 🤓</li>
+                <li><a href="http://openjdk.java.net/jeps/334" target="_blank">JEP 334</a> JVM Constants API 😴</li>
+                <li><a href="http://openjdk.java.net/jeps/340" target="_blank">JEP 340</a> One AArch64 Port, Not Two 😴</li>
+                <li><a href="http://openjdk.java.net/jeps/341" target="_blank">JEP 341</a> Default CDS Archives 😴</li>
+                <li><a href="http://openjdk.java.net/jeps/344" target="_blank">JEP 344</a> Abortable Mixed Collections for G1 😴</li>
+                <li><a href="http://openjdk.java.net/jeps/346" target="_blank">JEP 346</a> Promptly Return Unused Committed Memory from G1 😴</li>
+                <li>next.java ☕️</li>
+            </ul>
+        </section>
+
+        <section class="small">
+            <h4><a href="http://openjdk.java.net/jeps/189" target="_blank">JEP 189</a> Shenandoah: A Low-Pause-Time Garbage Collector</h4>
+            <div>
+                <ul>
+                    <li>RedHat originally committed this work to the OpenJDK</li>
+                    <li>GC that reduces pause-times!</li>
+                    <li>👆 i.e: targeting low latency</li>
+                    <li>Architecture improves responsiveness</li>
+                    <li>Similar to how azul/zing vms work (C4 => Continuously Concurrent Compacting Collector) => commercial</li>
+                    <li>👑 One GC to rule them all? 👑 - No
+                        <ul>
+                            <li>Better ones for throughput - G1 - bette</li>
+                            <li>Better ones for memory footprint - both G1 and CMS</li>
+                        </ul>
+                    </li>
+                    <li>Disadvantages
+                        <ul>
+                            <li>Requires more read/writes</li>
+                            <li>Better ones for memory footprint - both G1 and CMS</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>
+                    <small class="gray">..this is mostly "fyi"..</small>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h3><a href="http://openjdk.java.net/jeps/230" target="_blank">JEP 230</a> Microbenchmark Suite</h3>
+            <p>Internal JDK thing..</p>
+        </section>
+
+        <section>
+            <section><h3>Stream-Api: Teeing-method</h3></section>
+            <section class="small">
+                <h3>Wut?</h3>
+                <ul>
+                    <li>Takes three arguments:
+                        <ul>
+                            <li>Two Collectors</li>
+                            <li>BiFunction</li>
+                        </ul>
+                    </li>
+                    <li>Input streams passed in to each collector</li>
+                    <li>BiFunction handles the results from the collectors</li>
+                    <li>Used in .collect() - returns whatever defined by the BiFunction</li>
+                    <li>Simplifies usage of e.g the reduce() function</li>
+                </ul>
+                <small>BiFunction is a function that accepts two arguments and returns a result based on those two (specialization of Function..)</small>
+            </section>
+            <section>
+                <img src="https://assets.azul.com/files/Diagram-of-teeing-768x203.jpg"/>
+            </section>
+            <section>
+                <h4>Implementation</h4>
+                <pre><code class="lang-java" data-noescape>public static <T, R1, R2, R> Collector<T, ?, R> teeing(
+                Collector<? super T, ?, R1> downstream1,
+                Collector<? super T, ?, R2> downstream2,
+                BiFunction<? super R1, ? super R2, R> merger) {
+                return teeing0(downstream1, downstream2, merger);
+                }</code></pre>
+            </section>
+            <section>
+                <h4>Example</h4>
+                <pre><code class="lang-java" data-noescape>double average = Stream.of(1, 4, 2, 7, 4, 6, 5)
+.collect(teeing(
+    summingDouble(i -> i),
+    counting(),
+    (sum, n) -> sum / n)
+);
+// sum => summingDouble()
+// n => counting()
+// result = 4.142857142857143 👻</code></pre>
+            </section>
+        </section>
+
+        <section class="small">
+            <h3>Conclusion</h3>
+            <div>
+                <ul class="list_emoji list_star">
+                    <li>Some nice (mostly under ze hood) features</li>
+                    <li>Performance still seems to be in focus - which will be the best impact of the release(🤑)!</li>
+                    <li>No string enhancement yet (<a href="https://openjdk.java.net/jeps/326">JEP-326</a>). Maybe in Java13?</li>
+                    <li>A bit booring release</li>
+                </ul>
+                <strong>
+                    Important: A few things were also removed in this release (old things, such as APIs, classes and stuff). Be wary and not blindly updating to Java12. What worked on 11 or 10, may not work on 12 😊
+                </strong>
+            </div>
+        </section>
+
+        <section class="small">
+            <h3>Whats next?!</h3>
+            <p>JDK 13 is due in September 2019
+                <small>(ish)</small>
+                Inclusion proposals:
+            </p>
+            <ul class="list_emoji list_star">
+                <li>Booring stuff. Check it <a href="https://hg.openjdk.java.net/jdk/jdk/log?rev=reverse%28%22jdk-13%2B17%22%3A%3A%22jdk-13%2B18%22-%22jdk-13%2B17%22%29&revcount=1000">yourself</a></li>
+                <li><a href="https://openjdk.java.net/jeps/326">😢 JEP 326? Raw String literals?! 😢</a></li>
+            </ul>
+        </section>
+
+        <section class="small">
+            <h3>questions, questions, questions</h3>
+        </section>
+    </div>
+
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  Reveal.initialize({
+    width: 1150,
+    height: 700,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    rtl: false,
+    shuffle: false,
+    fragments: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    autoSlideMethod: Reveal.navigateNext,
+    mouseWheel: false,
+    hideAddressBar: true,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    viewDistance: 3,
+    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+    // Number of pixels to move the parallax background per slide
+    // - Calculated automatically unless specified
+    // - Set to 0 to disable movement along an axis
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null
+
+  });
+</script>
+</body>
+</html>

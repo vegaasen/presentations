@@ -21,8 +21,23 @@ ul.small {
     font-size: 0.7em
 }
 
+code.di {
+    display: inline-block;
+}
+
+code.small {
+    clear: both;
+    font-size: 0.6em;
+    color: #000000;
+    background-color: #ffecae;
+}
+
 section.small {
     font-size: 0.8em;
+}
+
+section.small span {
+    font-size: 0.6em;
 }
 
 .gray {
@@ -43,6 +58,16 @@ minor:after {
 
 .left-align {
     text-align: left;
+}
+
+.lefty {
+    float: left;
+    width: 50%;
+}
+
+.righty {
+    float: right;
+    width: 50%;
 }
 
 .footnote {

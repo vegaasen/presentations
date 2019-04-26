@@ -35,8 +35,68 @@
             <ul>
                 <li>Classes, apparently hard to comprehend (this)</li>
                 <li>"Side effect-hell" - unrelated logic for components</li>
-                <li>Splits components in to smaller functions for simplicity (SRP)</li>
+                <li>Simplifies splitting components in smaller functions for simplicity (SRP)</li>
+                <li>"Backwards" compatible</li>
+                <li>✅ Safe - it won't trigger reload of component tree (given?)</li>
             </ul>
+        </section>
+        <section>
+            <section class="small">
+                <h3>Basic hooks</h3>
+                <ul>
+                    <li>
+                        <p><a href="#basic-hooks">Basic</a></p>
+                        <ul>
+                            <li><a href="#usestate"><code>useState</code></a></li>
+                            <li><a href="#useeffect"><code>useEffect</code></a></li>
+                            <li><a href="#usecontext"><code>useContext</code></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><a href="#additional-hooks">Additional</a></p>
+                        <ul>
+                            <li><a href="#usereducer"><code>useReducer</code></a></li>
+                            <li><a href="#usecallback"><code>useCallback</code></a></li>
+                            <li><a href="#usememo"><code>useMemo</code></a></li>
+                            <li><a href="#useref"><code>useRef</code></a></li>
+                            <li><a href="#useimperativehandle"><code>useImperativeHandle</code></a></li>
+                            <li><a href="#uselayouteffect"><code>useLayoutEffect</code></a></li>
+                            <li><a href="#usedebugvalue"><code>useDebugValue</code></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Most of these may be lazy initialized 😴</p>
+            </section>
+            <section class="small">
+                <h4>Basic hooks</h4>
+                <div>
+                    <pre>useState</pre>
+                    <span>
+                        Simplest type. It basically initially sets a state variable, returns this and also contains a method for updating.
+                    </span>
+                    <code class="di small">const [count, setCount] = useState(initialCount); setCount(prevCount => prevCount + 1)}</code>
+                </div>
+                <div>
+                    <pre>useEffect</pre>
+                    <p>
+
+                    </p>
+                </div>
+                <div>
+                    <pre>useContext</pre>
+                    <span>
+                        Allows for using existing consumers and providers in the context api
+                    </span>
+                    <code class="di small">const value = useContext(MyContext);</code>
+                </div>
+            </section>
+            <section>
+                <h4>Can I declare my own? Why, yes you can 😊</h4>
+                <ul>
+                    <li>Convention: Always start the hooks function with <code>use<?> => useMyCoolState()</code></li>
+                    <li></li>
+                </ul>
+            </section>
         </section>
         <section>
             <ul>
@@ -54,12 +114,18 @@
                     <li>Only define hooks on <strong>top level</strong> of functions</li>
                     <li>Only works in <strong>functional components</strong></li>
                     <li>Don't use hooks outside of React...</li>
+                    <li>..also; state is not shared between hooks of the same kind - as each <strong>call</strong> to them will be isolated 😊</li>
                 </ul>
             </section>
             <section>
                 <p>⚔️ Use the <span class="text-strike">force</span> eslinter, Luke ⚔️</p>
-                <p><small><pre><code>yarn add eslint-plugin-react-hooks</code></pre></small></p>
-                <p><small><pre><code>// @package.json => (in the eslint-section)
+                <p>
+                    <small>
+                        <pre><code>yarn add eslint-plugin-react-hooks</code></pre>
+                    </small>
+                </p>
+                <p>
+                    <small><pre><code>// @package.json => (in the eslint-section)
 {
   "plugins": [
     // ...
@@ -71,7 +137,9 @@
     "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
-                </code></pre></small></p>
+                </code></pre>
+                    </small>
+                </p>
             </section>
         </section>
         <section class="small">
