@@ -107,3 +107,12 @@ strong {
 .text-strike {
     text-decoration: line-through;
 }
+
+.split-h {
+    display: grid !important;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+}
+
+.split-h div {
+}
