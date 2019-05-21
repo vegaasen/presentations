@@ -32,6 +32,10 @@ code.small {
     background-color: #ffecae;
 }
 
+div.small {
+    font-size: 0.4em;
+}
+
 section.small {
     font-size: 0.8em;
 }
@@ -115,4 +119,9 @@ strong {
 }
 
 .split-h div {
+}
+
+.b-gray--light {
+    background-color: #ffffff;
+    color: #000;
 }
