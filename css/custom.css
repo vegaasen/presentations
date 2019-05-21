@@ -121,7 +121,19 @@ strong {
 .split-h div {
 }
 
+h5 {
+    font-size: 0.5em !important;
+}
+
 .b-gray--light {
     background-color: #ffffff;
     color: #000;
+}
+
+.b-gray--light h1,
+.b-gray--light h2,
+.b-gray--light h3,
+.b-gray--light h4
+{
+    color: #676767;
 }
