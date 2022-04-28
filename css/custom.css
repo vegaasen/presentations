@@ -2,6 +2,7 @@
 
 p {
     font-size: 0.8em !important;
+    word-wrap: break-word;
 }
 
 section {

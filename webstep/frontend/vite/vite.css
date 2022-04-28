@@ -1,0 +1,64 @@
+.bkg-white {
+    background-color: #ffffff;
+    color: #000;
+}
+
+img.me {
+    border-radius: 50%;
+    width: 30px;
+    margin-top: 0;
+}
+
+ul.list_poop > li:before {
+    content: '💩';
+}
+
+ul.list_rain > li:before {
+    content: '🌧';
+}
+
+ul.list_star > li:before {
+    content: '⭐';
+}
+
+ul.list_emoji > li:before {
+    margin-left: -20px;
+    margin-right: 10px;
+}
+
+ul.list_emoji {
+    list-style-type: none;
+}
+
+ul.list_none {
+    list-style-type: none !important;
+    margin-right: 0;
+}
+
+ul.list_cramped > li {
+    line-height: 0.7em;
+}
+
+ul.list_text-small {
+    font-size: 0.9em;
+}
+
+dl.shadowed > dt {
+    text-shadow: -5px 5px #4a4a4a;
+}
+
+.text-danger {
+    color: sienna;
+}
+
+.text-success {
+    color: cadetblue;
+}
+
+.text-shadow {
+    color: slategray;
+}
+
+.text-uber_small {
+    font-size: 0.2em !important;
+}

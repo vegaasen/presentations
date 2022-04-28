@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posten / Logged-In@Tracking</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.css">
+    <!-- formats :-) -->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.css"-->
+    <!--link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/black.css"-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/night.css">
+    <link rel="stylesheet" href="../../css/custom.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal b-gray--light">
+    <div class="slides">
+        <section data-background-color="#cccccc">
+            <h5 style="line-height: 2em">
+                New &amp; amazing 🔥
+            </h5>
+            <h2><span style="background-color: white">tracking</span>logged-in</h2>
+        </section>
+
+        <section>
+            <section>
+                <h3>agenda</h3>
+                <ul class="list_none">
+                    <li>Goals ✅</li>
+                    <li>Aber, warum?</li>
+                    <li>Current status 🤷‍♂️</li>
+                    <li>Remaning bits &amp; bobs 💩</li>
+                    <li>Technologies used 💾</li>
+                    <li>The F U T U R E &amp; important dates</li>
+                </ul>
+            </section>
+        </section>
+
+        <section data-background-color="rgb(196, 255, 206)">
+            <section>
+                <p>✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅</p>
+                <h2>goals</h2>
+                <p>✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅</p>
+            </section>
+            <section><h3>Simplify some of the confusing/hard part(s) of Sporing (logged in)</h3></section>
+            <section><h3>Easier to maintain and extend</h3></section>
+            <section><h3>Remove all things mykollis and JSPs in Sporing</h3></section>
+            <section><h3>Did I mention JSPs in Sporing..? <small>(currently limiting the "future")</small></h3></section>
+        </section>
+
+        <section>
+            <section><h2>what are you <u>actually</u> solving 🤨</h2></section>
+            <section>
+                <p>Not much, really</p>
+            </section>
+            <section>
+                <p>ok..its a tad bit</p>
+                <ul>
+                    <li>Simple code/Smaller fingerprint</li>
+                    <li>Less fuss</li>
+                    <li>No mutations</li>
+                    <li>Less time to market in the future for features</li>
+                    <li>APIs implemented "as-before" 😬</li>
+                    <li>simplifies process of designing new APIs for our Apps</li>
+                    <li>makes logged-in-tracking more future-proof</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section><h2><code>GET /status/current</code></h2></section>
+            <section><h3>Ready to be used</h3></section>
+            <section><h3>Deployed on Azure in QA</h3></section>
+            <section><h3>In-use by PostenIdUser in QA</h3></section>
+        </section>
+
+        <section>
+            <section><h2>the remaining bits™️️</h2><p>..for the initial release</p></section>
+            <section><h3>Deploy on azure production</h3></section>
+            <section>
+                <h3>Deploy feature-toggle in PostenIdUser </h3>
+                <small>to simplify on demand testing of new integration</small>
+            </section>
+            <section><h3>Deploy A/B in PostenIdUser</h3><small>(perhaps)</small></section>
+            <section><h3>PostenIdUser to use new MyKollis</h3></section>
+            <section><h3>Mobile Apps to use new MyKollis</h3><small>in QA</small></section>
+            <section><h3>Mobile Apps to use new MyKollis</h3><small>in production</small></section>
+        </section>
+
+        <section>
+            <section><h2>technology and architecture</h2></section>
+            <section>
+                <ul class="list_emoji list_star">
+                    <li>Java14</li>
+                    <li>Maven</li>
+                    <li>Kotlin</li>
+                    <li>Kotlin Coroutines</li>
+                    <li>Arrow</li>
+                    <li>Spring Boot on Webflux (Reactive)</li>
+                    <li>Non-blocking design</li>
+                    <li>Functional approach</li>
+                    <li>Stateless</li>
+                </ul>
+            </section>
+            <section>
+                <ul class="list_emoji list_star">
+                    <li>Using Azure Pipelines</li>
+                    <li>Deployed to k8s and bring docker using <code>kconf</code></li>
+                    <li>Deployed (only) on Azure</li>
+                    <li>Using existing Sporing DB on Evry servers</li>
+                    <li>Using BKL/LM directly from Azure</li>
+                    <li>Using Redis Cache on Azure</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Redis Cache</h3>
+                <ul>
+                    <li>
+                        Tracking requests
+                        <ul>
+                            <li>active: 10 minutes</li>
+                            <li>delivered: one year</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Pickup points
+                        <ul>
+                            <li>30 days</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="img/redis.png"/>
+            </section>
+            <section>
+                <h4><a href="https://github.com/bring/tracking-logged-in">https://github.com/bring/tracking-logged-in</a></h4>
+                <p>go geek and create PRs 🤓</p>
+            </section>
+        </section>
+
+        <section>
+            <section><h2>how do I use the "new" endpoints, then 🤨?</h2></section>
+            <section>
+                <h3>Quite simple</h3>
+                <small><a href="https://github.com/bring/postenid-user/pull/554">Reference PR in PostenIdUser</a></small>
+            </section>
+            <section>
+                <img src="img/activate-new.png"/>
+                ktnxbye 👌
+            </section>
+            <section>
+                <h2>oh..</h2>
+            </section>
+            <section>
+                <h4>we may also just add a rewrite rule in nginx, to allow for simpler control of the endpoint..</h4>
+                <small>(perhaps)</small>
+            </section>
+        </section>
+
+        <section>
+            <section><h2>way forward/dates 🤓</h2></section>
+            <section><h3>🚀 Release to Production</h3><p>Week 18 (this week)</p></section>
+            <section><h3>🚀 Production: PostenIdUser</h3><p>11.05.2020</p></section>
+            <section><h3>🤠 QA: Mobile apps</h3><p>any time/asap</p></section>
+            <section><h3>😬 Production: Mobile apps</h3><p>This week</p></section>
+            <section><h3>🚀 Production: Mobile apps</h3><p>TBD</p></section>
+            <section><h3>Remove MyKollis from Sporing</h3><p>..after mobile apps is converted</p></section>
+        </section>
+
+        <section>
+            <section><h2>whats next after this?</h2></section>
+            <section><h3>We're not done just yet..</h3></section>
+            <section>
+                <h4>I D E A S 🤓</h4>
+                <ul>
+                    <li>Remove MyKollis and its portions in Sporing</li>
+                    <li>Remove JSPs in Sporing</li>
+                    <li>Create a new database holding the personalized bits (transfer from the sporing db today)</li>
+                    <li>Remove (eventually) unused tables in Sporing related to MyKollis</li>
+                    <li>Migrate Events+Push + Device mngmnt out of Sporing</li>
+                    <li>and more..</li>
+                </ul>
+                <p>..other phases to be defined in the coming months(ish?)</p>
+            </section>
+            <section>
+                <small>oh..and</small>
+                <h3>Design new mykollis APIs together with PostenIdUser-/App-team</h3>
+                <small>..using GraphQL?</small>
+            </section>
+        </section>
+
+        <section data-background-color="rgb(255, 247, 193)">
+            <section><h2>🐣 easter eggs and GOTCHAs</h2></section>
+            <section>
+                <ul class="list_none">
+                    <li>
+                        Need to build up cache, again 😬
+                        <ul class="list_none">
+                            <li>..but this isn't something new</li>
+                        </ul>
+                    </li>
+                    <li>More network traffic then before 🤓</li>
+                </ul>
+            </section>
+        </section>
+
+        <section data-background-color="rgb(188, 255, 230)">
+            <h3>postenId users, be ready 🥳</h3>
+            <div class="countdown">
+                <p class="timer">
+                    <span id="days"></span>
+                    <span id="hours"></span>
+                    <span id="minutes"></span>
+                    <span id="seconds"></span>
+                </p>
+                <div id="date" class="small"></div>
+            </div>
+        </section>
+
+        <section data-background-color="rgb(255, 255, 255)">
+            <section><h2>any 🤨's?</h2></section>
+        </section>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/js/reveal.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  Reveal.initialize({
+    width: 1150,
+    height: 700,
+    controls: true,
+    progress: true,
+    slideNumber: true,
+    history: true,
+    keyboard: true,
+    overview: true,
+    center: true,
+    touch: true,
+    loop: false,
+    rtl: false,
+    shuffle: false,
+    fragments: true,
+    embedded: false,
+    help: true,
+    showNotes: false,
+    autoSlide: 0,
+    autoSlideStoppable: true,
+    autoSlideMethod: Reveal.navigateNext,
+    mouseWheel: false,
+    hideAddressBar: true,
+    previewLinks: false,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    transitionSpeed: 'default', // default/fast/slow
+    backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+    viewDistance: 3,
+    parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+    parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+    // Number of pixels to move the parallax background per slide
+    // - Calculated automatically unless specified
+    // - Set to 0 to disable movement along an axis
+    parallaxBackgroundHorizontal: null,
+    parallaxBackgroundVertical: null
+
+  });
+</script>
+<script src="../../js/countdown.js"></script>
+<script type="text/javascript">
+  countdown('05/11/2020 09:00:00 AM')
+</script>
+</body>
+</html>
