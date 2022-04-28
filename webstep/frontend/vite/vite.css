@@ -55,8 +55,12 @@ dl.shadowed > dt {
     color: cadetblue;
 }
 
+.text-shadow_nice {
+    text-shadow: 3px 2px #e2e2e2 !important;
+}
+
 .text-shadow {
-    color: slategray;
+    opacity: 0.7;
 }
 
 .text-uber_small {
