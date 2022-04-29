@@ -101,16 +101,17 @@
             <section>
                 <h3>Features, Features, Features!</h3>
                 <ul class="list_none list_cramped">
-                    <li>Pre-bundling</li>
                     <li>HMR</li>
                     <li>Typescript rett i config og plugins!</li>
-                    <li>Vue</li>
-                    <li>JSX</li>
+                    <li>For Vue!</li>
+                    <li>For JSX!</li>
                     <li>CSS/PostCss/Modules/+++</li>
-                    <li>JSON</li>
+                    <li>JSON (duh)</li>
                     <li>WebAssembly</li>
                     <li>WebWorkers</li>
-                    <li>Nice bygge-optimaliseringer</li>
+                    <li>Pre-bundling: Konge bygge-optimaliseringer gjennom <code>Rollup</code></li>
+                    <li>Dev-server gjennom <code>esbuild</code> og <code>ESM</code>!</li>
+                    <li>Dritkjapp!!</li>
                 </ul>
             </section>
             <section>
@@ -158,8 +159,8 @@
                 <h2>H<small>ot</small>M<small>odule</small>R<small>eload</small></h2>
                 <div>
                     <ul class="list_star list_emoji">
-                        <li>HMR + dev-server funker med e.g <code>Express</code>!</li>
-                        <li>HMR er blazing kjapt for kildekode pga ESM!</li>
+                        <li>HMR er blazing kjapt for kildekode pga <code>esbuild</code> og <code>ESM</code>!</li>
+                        <li>HMR + dev-server funker med bla. <code>Express</code>!</li>
                     </ul>
                 </div>
             </section>
@@ -187,12 +188,18 @@
                     <li>Mange applikasjoner!</li>
                     <li>Store &amp; små i size</li>
                     <li>Brukte <code>CRA - ejected + non-ejected</code> og <code>parcel</code></li>
-                    <li>Rimelig rett frem, få issues. Litt knot med ejected prosjekter
-                        <ul>
-                            <li>Its us, not you</li>
-                        </ul>
-                    </li>
+                    <li>Rimelig rett frem, få issues. Litt knot med ejected prosjekter</li>
                 </ul>
+                <div>
+                    <h5>Pre-Vite</h5>
+                    <small><code>npm run start <span class='text-danger'>10.20s</span> user 2.08s system 187% cpu 11.910 total</code></small>
+                    <small><code>npm run build <span class='text-danger'>38.92s</span> user 2.08s system 187% cpu 11.910 total</code></small>
+                </div>
+                <div>
+                    <h5>Post-Vite</h5>
+                    <small><code>npm run start <span class='text-success'>0.9s</span> user 0.42s system 165% cpu 3.113 total</code></small>
+                    <small><code>npm run build <span class='text-success'>5.1s</span> user 0.42s system 165% cpu 3.113 total</code></small>
+                </div>
             </section>
             <section>
                 <h3>Svelte<img src="img/svelte.png" alt="svelte" width="50px" style="position: absolute; top: -14px"/></h3>
@@ -204,10 +211,12 @@
                 </ul>
                 <div>
                     <h4>Pre-Vite</h4>
-                    <small><code>npm run build <span class='text-danger'>20.30s</span> user 2.08s system 187% cpu 11.910 total</code></small>
+                    <small><code>npm run start <span class='text-danger'>8.50s</span> user 2.08s system 187% cpu 11.910 total</code></small>
+                    <small><code>npm run build <span class='text-danger'>18.30s</span> user 2.08s system 187% cpu 11.910 total</code></small>
                 </div>
                 <div>
                     <h4>Post-Vite</h4>
+                    <small><code>npm run start <span class='text-success'>0.85s</span> user 0.42s system 165% cpu 3.113 total</code></small>
                     <small><code>npm run build <span class='text-success'>4.75s</span> user 0.42s system 165% cpu 3.113 total</code></small>
                 </div>
             </section>
@@ -215,10 +224,12 @@
                 <h3>Vue<img src="img/vue.png" alt="vue" width="50px" style="position: absolute; top: -10px"/></h3>
                 <div>
                     <h4>Pre-Vite</h4>
+                    <small><code>npm run start <span class='text-danger'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                     <small><code>npm run build <span class='text-danger'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                 </div>
                 <div>
                     <h4>Post-Vite</h4>
+                    <small><code>npm run start <span class='text-success'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                     <small><code>npm run build <span class='text-success'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                 </div>
                 <h3>Det blei bedre jaffal, its a promise 🤪</h3>
@@ -230,7 +241,7 @@
                 <p>upsides</p>
                 <p>upsides</p>
                 <p>upsides</p>
-                <h2>takeaways?</h2>
+                <h2>Tanker etter migrering?</h2>
                 <p>pitfalls</p>
                 <p>pitfalls</p>
                 <p>pitfalls</p>
@@ -239,15 +250,14 @@
             <section>
                 <h3>Sweet</h3>
                 <ul class="list_star list_emoji text-success">
-                    <li>Relativt enkelt å retrofitte, uansett!</li>
-                    <li>Verdt innsats for conversion</li>
-                    <li>Mindre og enklere konfigurasjon</li>
+                    <li>Relativt enkelt å retrofitte jevnt over!</li>
                     <li>Mindre chunks/byggsize</li>
-                    <li>Kjappere tester med vitest/esbuild-jest</li>
-                    <li>Ikke hatt noen nevneverdige issues med bygging</li>
+                    <li>Mindre og enklere konfigurasjon</li>
                     <li>Auto-reload av mock-server/express - 🎉!</li>
+                    <li>Kjappere tester med vitest/esbuild-jest</li>
                     <li>Dritkjapp startup av applikasjon - 🥳!</li>
-                    <li>Mindre passiv-aggressiv hverdag, ikke minst</li>
+                    <li>Verdt innsats for conversion - DOIT</li>
+                    <li>Ikke minst; En mindre passiv-aggressiv hverdag</li>
                 </ul>
             </section>
             <section>
@@ -255,7 +265,8 @@
                 <ul class="list_rain list_emoji text-danger">
                     <li>(Teamet) Må kjenne til mer config enn <code>react-scripts</code></li>
                     <li>Føles litt mer experimental - it's <strong>that</strong> feeling</li>
-                    <li>Litt lite dokumentasjon (oi! sjokk)</li>
+                    <li>Litt lite dokumentasjon på visse deler, men "okei" anyway</li>
+                    <li>Kjipt med M1-Macs</li>
                 </ul>
             </section>
         </section>
@@ -272,7 +283,7 @@
                 <p>svelte</p>
             </section>
             <section>
-                <h2>&laquo;In a nutshell&raquo;</h2>
+                <h2>&laquo;conversion, in a nutshell&raquo;</h2>
                 <div>
                     <dl class="shadowed">
                         <dt>Uno.</dt>
@@ -290,6 +301,25 @@
                 </div>
             </section>
             <section>
+                <h2>&laquo;new app, in a nutshell&raquo;</h2>
+                <div>
+                    <dl class="shadowed">
+                        <dt>Uno.</dt>
+                        <dd>
+                            <small><code>pnpm create vite sick-app -- --template react-ts</code></small><br/>
+                            <small><code>pnpm create vite sick-app -- --template svelte-ts</code></small><br/>
+                            <small><code>pnpm create vite sick-app -- --template vue-ts</code></small><br/>
+                            <small><code>....</code></small>
+                        </dd>
+                        <dt>Dos.</dt>
+                        <dd><img src="img/bongobob-typing.gif" alt="bongbob-typing" height="175px"/> </dd>
+                    </dl>
+                    <p>
+                        <small class="text-uber_small">- <code>tres, cuatro, cinco, cinco, seis -</code></small>
+                    </p>
+                </div>
+            </section>
+            <section>
                 <h1>
                     <a href="https://github.com/bring/rett-betalt-missing-postage/pull/381">Svelte</a> &amp;
                     <a href="https://github.com/bring/sende-frontend/pull/168">React</a>
@@ -301,16 +331,24 @@
             <p>react</p>
             <p>react</p>
             <p>react</p>
-            <h2>PoC-time!</h2>
-            ??bruke sende-ekspress??
+            <h2>Demo-time!</h2>
             <p>react</p>
             <p>react</p>
             <p>react</p>
             <p>react</p>
         </section>
         <section>
+            <h2>Ressurser 🔍</h2>
+            <h4><a href="https://vitejs.dev">vitejs.dev</a></h4>
+            <h4><a href="https://vitest.dev">vitest.dev</a></h4>
+            <h4><a href="https://esbuild.github.io">esbuild</a></h4>
+            <h4><a href="https://github.com/vitejs/vite/tree/main/packages/create-vite">Create Vite App</a></h4>
+            <h4><a href="https://gist.github.com/vegaasen/57b9aba83bf7977935f7d0976f8c82f8">Liten convert-react-to-Vite gist</a></h4>
+        </section>
+        <section>
             <h3>
-                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋</h3>
+                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋
+            </h3>
         </section>
     </div>
 </div>
