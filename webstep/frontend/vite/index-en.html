@@ -22,6 +22,17 @@
             <div>
                 <p><small><img src="img/me.png" alt="hello@vegaasen" class="me"/> <code>vegaasen | lightningish-talk</code></small></p>
             </div>
+            <!--
+            * intro om meg
+            * "disclaimers"
+                * basert på erfaringer
+                * basert på problemer _vi_ har hatt
+            * hva presentasjonen handler om
+                * forholdsvis ny bundler
+                *
+            * forventning på lengde
+            * take-away ("kva las du no?")
+            -->
         </section>
         <section>
             <p>javascript</p>
@@ -33,7 +44,7 @@
             <p>javascript</p>
             <p>javascript</p>
             <p>javascript</p>
-            <!--Bygging og bundling-->
+            <!-- hva handler dette om? jo, det handler om bygging og bundling-->
         </section>
         <section>
             <section>
@@ -58,14 +69,16 @@
                 <h1>reeeewind!</h1>
             </section>
             <section>
-                <h5>grunt 🗑</h5>
-                <h5>webpack 🗑</h5>
-                <h5>parcel 🐣</h5>
+                <h5>gulp 🥤🗑</h5> <!-- 2013 -->
+                <h5>grunt 🐮🗑</h5> <!-- 2013 -->
+                <h5>webpack 🗑</h5>  <!-- 2011 -->
+                <h5>parcel 🐣</h5> <!-- (2013) 2018 -->
                 <h2>- = itsatoolforeveryoneyeay = -</h2>
-                <h5>rollup 📦</h5>
-                <h5>esbuild 💥</h5>
-                <h5>snowpack ✅</h5>
+                <h5>rollup 📦</h5> <!-- 2015, mest for biblioteker akkurat nå -->
+                <h5>esbuild 💥</h5> <!-- 2019 -->
+                <h5>snowpack ✅</h5> <!-- 2019 -->
                 <h5>meta-bundlers; CRA - Sveltekit und so weiter</h5>
+                <!-- Fortell litt om de ulike gamle bundlerne, og litt om hva de løser hver og en av de. Historikk? -->
             </section>
         </section>
         <section>
@@ -124,11 +137,12 @@
                     <li>slow Startup (dev)</li>
                     <li>slow Build-time</li>
                     <li>no "complete" HMR support</li>
-                    <li>Bloatware o'rama (👋 react-scripts+eject || 👋 craco)</li>
+                    <li>Bloatware'o'rama (👋 react-scripts+eject || 👋 craco)</li>
                 </ul>
                 <p>
                     <small>..or aka. SBHB (fine, that acronym didn't work)</small>
                 </p>
+                <!-- Fortelle litt om dette, hva som er pain points med hverdagene våre -->
             </section>
             <section>
                 <h4><small>(pain-point 1 of 4)</small></h4>
@@ -139,7 +153,7 @@
                         <li>
                             Split: Dependencies
                             <ul>
-                                <li>Pre-bundler with esbuild (first-time or due to update)</li>
+                                <li>Pre-bundler with <code>esbuild</code> (first-time or due to update [partially])</li>
                             </ul>
                         </li>
                         <li>
@@ -172,25 +186,26 @@
                 <h4><small>(pain-point 4 of 4)</small></h4>
                 <h2>BEWARE BLOATWARE</h2>
                 <ul class="list_star list_emoji">
-                    <li>Small footprint/few transitive dependencies</li>
-                    <li>No need to a heap load of plugins</li>
-                    <li>Actual build-bundle will be smaller</li>
-                    <li>Buildtime iz amazingz!</li>
+                    <li>Small footprint</li>
+                    <li>Few transitive dependencies</li>
+                    <li>No need for a heap of plugins</li>
+                    <li>Actual built bundle is smaller</li>
+                    <li>Buildtimez iz amazingz ✨!</li>
                 </ul>
             </section>
         </section>
         <section>
             <section>
                 <h1>awzm!</h1>
-                <h3>but which sort projects has this been retrofitted to🤔?</h3>
+                <h3>but, to which project(s) is this retrofitted 🤔?</h3>
                 <h4>Done for React, Svelte &amp; Vue</h4>
-                <small>(NO idea on Vue, so don't ask plx pl0x)</small>
+                <small>(<strong>Don't</strong> know my Vue, so don't ask plx pl0x)</small>
             </section>
             <section>
                 <h3>React<img src="img/react.png" alt="reactjs" width="50px" style="position: absolute; top: -10px"/></h3>
                 <ul class="list_star list_emoji">
-                    <li><strong>All</strong> PMO/ORF apps!</li>
-                    <li>Both small, large and medium in size</li>
+                    <li><strong>ALL</strong> PMO/ORF apps!</li>
+                    <li>Small, large and medium in size</li>
                     <li>Some on <code>CRA - ejected + non-ejected</code> and <code>parcel</code></li>
                     <li>More or less straight forward - not many issues. Ejected projects can have some "caveats"</li>
                 </ul>
@@ -228,13 +243,13 @@
                 <h3>Vue<img src="img/vue.png" alt="vue" width="50px" style="position: absolute; top: -10px"/></h3>
                 <div>
                     <h4>Pre-Vite</h4>
-                    <small><code>npm run start <span class='text-danger'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
-                    <small><code>npm run build <span class='text-danger'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
+                    <small><code>npm run start <span class='text-danger'>idontknow 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
+                    <small><code>npm run build <span class='text-danger'>idontknow 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                 </div>
                 <div>
                     <h4>Post-Vite</h4>
-                    <small><code>npm run start <span class='text-success'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
-                    <small><code>npm run build <span class='text-success'>vetsje 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
+                    <small><code>npm run start <span class='text-success'>idontknow 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
+                    <small><code>npm run build <span class='text-success'>idontknow 🤷‍♂️</span> user 0s system 0% cpu 0 total</code></small>
                 </div>
                 <h3>Shit became faster at least, it's a promise 🤪</h3>
             </section>
@@ -245,7 +260,7 @@
                 <p>upsides</p>
                 <p>upsides</p>
                 <p>upsides</p>
-                <h2>Thoughts post migration?</h2>
+                <h2>Thoughts; post migration?</h2>
                 <p>pitfalls</p>
                 <p>pitfalls</p>
                 <p>pitfalls</p>
@@ -340,18 +355,25 @@
             <p>react</p>
             <p>react</p>
             <p>react</p>
+            <!--
+            * sende-express: demo av convert og pre-convert
+            * en (nedlasta) branch pre-vite
+            * en (nedlasta) branch post-vite
+            -->
         </section>
         <section>
             <h2>Resources 🔍</h2>
             <h4><a href="https://vitejs.dev">vitejs.dev</a></h4>
+            <h4><a href="https://viteconf.org">viteconf.org</a></h4>
             <h4><a href="https://vitest.dev">vitest.dev</a></h4>
             <h4><a href="https://esbuild.github.io">esbuild</a></h4>
             <h4><a href="https://github.com/vitejs/vite/tree/main/packages/create-vite">Create Vite App</a></h4>
             <h4><a href="https://gist.github.com/vegaasen/57b9aba83bf7977935f7d0976f8c82f8">Tiny gist for converting-react-to-Vite</a></h4>
+            <h3>oh, and theres a <a href="https://viteconf.org">viteconf</a> today</h3>
         </section>
         <section>
             <h3>
-                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋
+                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋<div class="text-rotate">👋</div>👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋
             </h3>
         </section>
     </div>

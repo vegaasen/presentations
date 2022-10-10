@@ -70,3 +70,9 @@ dl.shadowed > dt {
 .text-uber_small {
     font-size: 0.2em !important;
 }
+
+div.text-rotate {
+    display: inline-block;
+    transform: rotate(-180deg);
+    margin-left: 5px;
+}
