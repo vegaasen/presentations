@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>/go/</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/moon.min.css">
+    <link rel="stylesheet" href="go.css?v=0.1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background-color="#cccccc">
+            <!-- agenda. deg, oss, osv -->
+            <div class="logo-container bkg-white">
+                <!-- todo: fancy spinner eller noe sånt? -->
+                <img src="img/go.png" alt="logo" width="400px"/>
+                <p class="logo-caption"><small><code>/ɡoʊ, ɡɔn, ɡʌn/</code></small></p>
+                <p><small>a reflective rewind of our journey using <code>golang</code></small></p>
+            </div>
+            <div>
+                <p><small><img src="img/me.png" alt="hello@vegaasen" class="me"/> <code>vegaasen programmer@ORF</code></small></p>
+            </div>
+            <!--
+            * intro om meg
+            * "disclaimers"
+                * basert på erfaringer
+                * basert på problemer _vi_ har hatt
+            * hva presentasjonen handler om
+                *
+                *
+            * forventning på lengde
+            * take-away ("kva las du no?")
+            -->
+        </section>
+        <section style="text-align: left">
+            <h2>So what is go?</h2>
+            <small>
+                <blockquote>
+                    <p>
+                        Go is a programming language that's relatively new,
+                        But don't let that fool you, it's already quite true,
+                        It's designed to be simple, with syntax so clean,
+                        That coding with Go is like a fresh breeze through a scene.
+                    </p>
+                    <p>
+                        It's efficient and fast, and built for concurrency,
+                        So you can do many things, all at once, with some ease,
+                        You can build web apps, or command-line tools,
+                        Or even write systems, with networking rules.
+                    </p>
+                    <p>
+                        And if that's not enough, there's a library so grand,
+                        With packages for everything, all at your command,
+                        From working with databases, to doing machine learning,
+                        Go has got your back, it's quite reassuring.
+                    </p>
+                    <p>
+                        So give Go a try, it won't disappoint,<br/>
+                        You might just find, it's the language you anoint.<br/>
+                    </p>
+                </blockquote>
+            </small>
+            <small>..according to ChatGPT</small>
+        </section>
+        <section data-background-color="#eee">
+            <section>
+                <img src="img/google-2007.png" width="60%"/>
+            </section>
+            <section>
+                <small>Inception</small>
+                <h2>2007 <small>(+/-)</small></h2>
+                <small>
+                    <ul class="list_emoji list_star">
+                        <li>Complexity of other languages (<code>C++</code> etc.)</li>
+                        <li>Compilation effectiveness</li>
+                        <li>Execution effectiveness</li>
+                    </ul>
+                </small>
+            </section>
+            <section>
+                <h2>2009</h2>
+                <small>beta and open-sourced!</small>
+            </section>
+            <section>
+                <h2>2012</h2>
+                <p>v1</p>
+                <small><a href="https://go.dev/doc/go1">changelog 👈</a></small>
+            </section>
+            <section>
+                <h2>2022</h2>
+                <p>v1.19</p>
+                <small><a href="https://go.dev/doc/go1.19">changelog 👈</a></small>
+            </section>
+            <section>
+                <h2>current</h2>
+                <p>v1.20</p>
+                <small><a href="https://go.dev/doc/go1.20">changelog 👈</a></small>
+            </section>
+        </section>
+        <section>
+            <p>
+                <img src="img/goers.png" width="80%"/>
+            </p>
+            <p>
+                <img src="https://bugcrowd.engineering/assets/blog/esbuild/esbuild.svg" width="130px"/>
+                <img src="https://vitejs.dev/logo.svg" width="50px"/>
+                <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" width="50px"/>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png"
+                     width="50px"/>
+            </p>
+        </section>
+        <section>
+            <img src="img/bring.png" alt="logo" width="500px"/>
+            <h3>+</h3>
+            <img src="img/go.png" alt="logo" width="400px"/>
+        </section>
+        <section>
+            <section>
+                <h2>Shiny new small initiative</h2>
+                <h3>Issues</h3>
+                <ul class="list_emoji list_rain">
+                    <li>Sweden; parcels tend to end up in the wrong pickup point</li>
+                    <li>Customer service "swamped" by phone calls 📞</li>
+                    <li>Lots of manual work</li>
+                </ul>
+                <h3>Requirements</h3>
+                <ul class="list_emoji list_star">
+                    <li>Residends of Sweden ❤️ chatbots</li>
+                    <li>Originate from chatbot 💬 (e.g term "Fel Ombud")</li>
+                    <li>Customer selects actual PuP for parcel</li>
+                    <li>📧 Email sent to Customer-Service + Customer</li>
+                </ul>
+            </section>
+            <section>
+                <h2>👋 to the Marianne app</h2>
+            </section>
+            <section>
+                <h2>Discussions</h2>
+                <h3>Technology?</h3>
+                <ul class="list_emoji list_think">
+                    <li>React / Kotlin / Ktor</li>
+                    <li>React / Kotlin / Spring</li>
+                    <li>React / Kotlin / Micronaut</li>
+                    <li>React / Kotlin / Kweb</li>
+                    <li>React / Kotlin@Native / Spring</li>
+                    <li>Svelte / Kotlin / Spring</li>
+                    <li>Remix</li>
+                    <li>React / Go</li>
+                </ul>
+            </section>
+            <section>
+                <h2><img src="img/go.png" width="300px"/></h2>
+                <h2><img src="img/react.png" width="125px"/></h2>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>knowledge+tech+considerations</h2>
+            </section>
+            <section>
+                <h2>Prior knowledge in <img src="img/go.png" width="70px"/></h2>
+                <small class="text-success">this much: </small>
+            </section>
+            <section>
+                <h3>Where to start?</h3>
+                <ul class="list_emoji list_star">
+                    <li><a href="https://gobyexample.com/">Go by example</a></li>
+                    <li><a href="https://go.dev/tour/list">Go language tour</a></li>
+                    <li><a href="https://pkg.go.dev/">Go package register</a></li>
+                    <li><a href="https://go.dev/play/">Go playground</a></li>
+                    <li>most importantly: "it's just another language"</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Frameworks &amp; techniques</h3>
+                <ul class="list_emoji list_star">
+                    <li>What exists?</li>
+                    <li>Pros and cons?</li>
+                    <li>Use known standards and simple tools!</li>
+                    <li>Lets have fun!</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Toolchain</h3>
+                <p>Quite a few different options out there. We went head-first towards safeness</p>
+                <ul class="list_emoji list_star">
+                    <li>
+                        IDE
+                        <ul>
+                            <li>IntelliJ with <strong>Go</strong> + <strong>Go Template</strong> plugins</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Runtime
+                        <ul>
+                            <li>Go v1.19 - (kotlin)</li>
+                            <li>Echo - (micronaut)</li>
+                            <li>Zerolog - (log4j2)</li>
+                            <li>Gobreaker - (resilience4j)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Test (unit, integration and smokes)
+                        <ul>
+                            <li>Testify</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>timeline</h1>
+            </section>
+            <section>
+                <h2>Timeline</h2>
+                <img src="img/timeline.gif"/>
+                <h3>"25.nov <-> 15.dec 2022"</h3>
+            </section>
+            <section>
+                ??
+            </section>
+        </section>
+        <section>
+            <section>
+                <p><img src="img/bongobob-typing.gif"/></p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Introduction to <img src="img/go.png" width="70px"/></h2>
+            </section>
+            <section>
+
+            </section>
+        </section>
+        <section>
+            <p><img src="img/go.png" width="100px"/></p>
+            <p><img src="img/go.png" width="100px"/></p>
+            <p><img src="img/go.png" width="100px"/></p>
+            <h3>Demo-time!</h3>
+            <p><img src="img/go.png" width="100px"/></p>
+            <p><img src="img/go.png" width="100px"/></p>
+            <p><img src="img/go.png" width="100px"/></p>
+        </section>
+        <section>
+            <section>
+                <h1>Conclusion</h1>
+                <small>the hard truth</small>
+            </section>
+            <section>
+                <h2>Problems &amp; issues</h2>
+            </section>
+            <section>
+                <h2>Maintainability</h2>
+            </section>
+            <section>
+                <h2>Project-summary</h2>
+            </section>
+            <section>
+                <h2>What if we made this in Kotlin?</h2>
+                <h4>Would've been faster.</h4>
+                <h4>Would've been more known.</h4>
+                <h4>Would've been not as fun.</h4>
+                <h4>Would've not had this presentation.</h4>
+                <h4>Would've used more resource on k8s.</h4>
+            </section>
+        </section>
+        <section>
+            <h2>Resources 🔍</h2>
+            <h4><a href="https://gobyexample.com/">gobyexample.com</a></h4>
+            <h4><a href="https://go.dev/tour/h4st">go.dev/tour/h4st</a></h4>
+            <h4><a href="https://pkg.go.dev/">pkg.go.dev</a></h4>
+            <h4><a href="https://go.dev/play/">go.dev/play</a></h4>
+            <h3><a href="https://gophercon.eu/">gophercon</a> in june (26-29) in Berlin</h3>
+        </section>
+        <section>
+            <h3>
+                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋
+                <div class="text-rotate">👋</div>
+                👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋
+            </h3>
+        </section>
+    </div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+    Reveal.initialize({
+        width: 1150,
+        height: 700,
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        shuffle: false,
+        fragments: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoSlide: 0,
+        autoSlideStoppable: true,
+        autoSlideMethod: Reveal.navigateNext,
+        mouseWheel: false,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transitionSpeed: 'default', // default/fast/slow
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        viewDistance: 3,
+        parallaxBackgroundImage: '',
+        parallaxBackgroundSize: '',
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null
+    });
+</script>
+</body>
+</html>

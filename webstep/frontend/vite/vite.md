@@ -17,8 +17,6 @@
 
 # Gjennomgang for en enkel conversion? Live-coding 😂?
 
-Kan prøve seg på et tidligere prosjekt, som f.eks customs import docs driten?
-
 Eller sende-express..?
 
 # Ressurser
