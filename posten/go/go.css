@@ -25,6 +25,10 @@ img.me {
     margin-top: 0;
 }
 
+img.faded {
+    opacity: .3;
+}
+
 ul.list_poop > li:before {
     content: '💩';
 }

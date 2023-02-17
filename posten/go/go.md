@@ -26,3 +26,13 @@ Yes, I can provide an example setup for a presentation about how a project went.
 1. Conclusion
     * Summarize the key points of the presentation
    * End with a call to action or a next step
+
+
+hm, er det no spes dere synes jeg skal ha med i presentasjonen? litt uskker på åssen presentasjon detta blir :stuck_out_tongue:
+Så tar å tar med prosjektet vårt, hva er målet, at det er lite, og at vi vurderte div greier
+så tar jeg med å sier litt åssen det gikk med gjennomføringen vår, bakgrunnen vår i go
+og så kanskje ta en liten intro til hva go er
+så vise litt fra prosjektet
+kanskje deploye noe fjas
+så ta en oppsummering, konklusjon av prosjekt og opplevd feil
++sammenligning om man gjorde detta i Kotlin/jvm
