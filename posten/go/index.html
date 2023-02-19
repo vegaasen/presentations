@@ -21,7 +21,10 @@
                 <p><small>a reflective rewind of our journey using <code>golang</code></small></p>
             </div>
             <div>
-                <p><small><img src="img/thale.png" alt="hello@thale" class="me faded"/><img src="img/pia.png" alt="hello@pia" class="me faded"/>+<img src="img/me.png" alt="hello@vegaasen" class="me"/> <code>vegaasen programmer@ORFanian</code></small></p>
+                <p><small><img src="img/thale.png" alt="hello@thale" class="me faded"/><img src="img/pia.png" alt="hello@pia" class="me faded"/>+<img src="img/me.png"
+                                                                                                                                                      alt="hello@vegaasen"
+                                                                                                                                                      class="me"/> <code>vegaasen
+                    programmer@ORFanian</code></small></p>
             </div>
             <!--
             * intro om meg
@@ -70,6 +73,12 @@
                 <img src="img/google-2007.png" width="60%"/>
             </section>
             <section>
+                <h1>"Fun facts" for <img src="img/go.png" width="10%"/>?</h1>
+                <h4>From <img src="img/google-2007.png" width="5%" style="top: 18px; position:relative;"/>, duh</h4>
+                <h4>Easy to type</h4>
+                <h4>Short and "concise"</h4>
+            </section>
+            <section>
                 <small>Inception</small>
                 <h2>2007 <small>(+/-)</small></h2>
                 <small>
@@ -91,7 +100,7 @@
             </section>
             <section>
                 <h2>2022</h2>
-                <p>v1.19</p>
+                <p>v1.19 (we are here)</p>
                 <small><a href="https://go.dev/doc/go1.19">changelog 👈</a></small>
             </section>
             <section>
@@ -129,7 +138,7 @@
                 <h3>Requirements</h3>
                 <ul class="list_emoji list_star">
                     <li>Residends of Sweden ❤️ chatbots</li>
-                    <li>Originate from chatbot 💬 (e.g term "Fel Ombud")</li>
+                    <li>Accessible "only" from chatbot 💬 (e.g term "Fel Ombud")</li>
                     <li>Customer selects actual PuP for parcel</li>
                     <li>📧 Email sent to Customer-Service + Customer</li>
                 </ul>
@@ -181,6 +190,16 @@
                     <li>Pros and cons?</li>
                     <li>Use known standards and simple tools!</li>
                     <li>Lets have fun!</li>
+                    <li>❗Use existing Bring-platform features
+                        <ul class="list_none list_cramped">
+                            <li>azure (duh)</li>
+                            <li>kconf</li>
+                            <li>k8s</li>
+                            <li>ha-proxy</li>
+                            <li>monitoring</li>
+                            <li>metrics</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
             <section>
@@ -190,7 +209,7 @@
                     <li>
                         IDE
                         <ul>
-                            <li>IntelliJ with <strong>Go</strong> + <strong>Go Template</strong> plugins</li>
+                            <li>IntelliJ + <strong>Go</strong> &amp; <strong>Go Template</strong> plugins</li>
                         </ul>
                     </li>
                     <li>
@@ -216,25 +235,234 @@
                 <h1>timeline</h1>
             </section>
             <section>
-                <h2>Timeline</h2>
+                <p>wait wait wait wait</p>
+                <h2>Decision timeline</h2>
+                <p>wait wait wait wait</p>
+                <h3>"01.oct <-> 20.nov 2022"</h3>
+                <p>wait wait wait wait</p>
+            </section>
+            <section>
+                <h2>Development timeline</h2>
                 <img src="img/timeline.gif"/>
-                <h3>"25.nov <-> 15.dec 2022"</h3>
+                <h3>"25.nov <-> 15.dec 2022 14:51"</h3>
             </section>
             <section>
-                ??
+                <img src="img/one-hour-later.png"/>
+            </section>
+            <section>
+                <h3>live in</h3>
+                <h1>prod</h1>
+                <h3>yo!</h3>
+                <h6>(15. december 2022 15:53)</h6>
+            </section>
+            <section>
+                <h2>Extras after going to production?</h2>
+                <h4>📊 Added some metrical bits &amp; bobs</h4>
+            </section>
+            <section>
+                <h1>problems</h1>
+                <p>..getting back to those..</p>
             </section>
         </section>
         <section>
             <section>
-                <p><img src="img/bongobob-typing.gif"/></p>
-            </section>
-        </section>
-        <section>
-            <section>
-                <h2>Introduction to <img src="img/go.png" width="70px"/></h2>
+                <p><img src="img/bongobob-typing.gif" width="10%"/></p>
+                <h2><small class="text-uber_small">(a short)</small>Introduction to <img src="img/go.png" width="70px"/></h2>
+                <p><img src="img/bongobob-typing.gif" width="10%"/></p>
             </section>
             <section>
+                <h4>first things first</h4>
+                <pre>
+    <code>
+    $ brew install go
+    $ go version
+    go version go1.19.6 darwin/arm64
+    </code>
+                </pre>
+                <img src="img/go-plugins.png" width="30%"/>
+            </section>
+            <section>
+                <h4>initialize project</h4>
+                <pre>
+    <code>
+    $ go mod init github.com/vegaasen/hello-world-go
+    $ cat go.mod
+    module github.com/vegaasen/hello-world-go
 
+    go 1.19
+    </code>
+                </pre>
+            </section>
+            <section>
+                <h4>A few basics</h4>
+                <pre>
+    <code>
+    package world
+
+    const name string = ""
+    func hello() {
+    }
+    func Hello() {
+    }
+    func main() {
+        hello();
+        Hello()
+    }
+    </code>
+                </pre>
+                <ul class="list_none list_cramped">
+                    <li>Package-private by default</li>
+                    <li>Public if uppercase</li>
+                    <li>Go-files is always linted which is built in!</li>
+                    <li>Can have multiple <code>main</code>-files</li>
+                </ul>
+            </section>
+            <section>
+                <h4>More basics</h4>
+                <pre>
+    <code>
+    var hello string = "Hello!"
+    // same as
+    var hello = "Hello!"
+    // same as
+    hello := "Hello!"
+    // with variable
+    name := "vegard"
+    var hello string = fmt.Sprintf("Hello, %s!", name) // familiar.com
+    // some other types
+    var one int = 1
+    var one bool = false
+    var one float32 = 2131231232131.2
+    someNotSoRandomNumbersInAnArray := []int{0, 2, 4, 6, }
+    </code>
+                </pre>
+            </section>
+            <section>
+                <h4>Functions?</h4>
+                <pre>
+    <code>
+    // package-private (default)
+    func hello(name string) {
+        println(fmt.Sprintf("Hello, %s!", name))
+    }
+    func hello(name string) string {
+        return fmt.Sprintf("Hello, %s!", name)
+    }
+    // public
+    func Hello(name string) string {
+        return fmt.Sprintf("Hello, %s!", name)
+    }
+    </code>
+                </pre>
+            </section>
+            <section>
+                <h4><span class="text-strike">Classes</span><span class="text-success">Types</span></h4>
+                <pre>
+    <code>
+    type Person struct {
+        FirstName   string  `json:"firstName" xml:"firstName"`
+        LastName    string  `json:"lastName" xml:"lastName"`
+        clever      bool
+    }
+
+    Person{
+		FirstName: "Vegard",
+		LastName:  "Aasen",
+		clever:    false,
+	}
+    </code></pre>
+            </section>
+            <section>
+                <h4><span class="text-strike">Classes</span><span class="text-success">Types</span></h4>
+                <pre><code>
+    type Person struct {
+        FirstName   string  `json:"firstName" xml:"firstName"`
+        LastName    string  `json:"lastName" xml:"lastName"`
+        clever      bool
+    }
+
+    type SomeSmartInterfaceName interface {
+        GetName() string
+    }
+    </code>
+                </pre>
+                <pre><code>
+    func (person Person) GetName string {
+        return fmt.Sprintf("%s %s", person.FirstName, person.LastName)
+    }
+
+    func theName(ssin SomeSmartInterfaceName) {
+        println(ssin.GetName())
+    }
+    </code>
+                </pre>
+            </section>
+            <section>
+                <h4>Enums</h4>
+                <pre><code>
+    type PersonType string
+    const (
+        Short Type = "short"
+        Long  Type = "long"
+    )
+    type Person struct {
+        FirstName   string  `json:"firstName" xml:"firstName"`
+        LastName    string  `json:"lastName" xml:"lastName"`
+        PersonType  Type
+    }
+    </code>
+                </pre>
+            </section>
+            <section>
+                <h4>Exceptions &amp; Finally</h4>
+                <pre><code>
+    func VeryRandomName(fail bool) (string, error) {
+        if fail {
+            return "", errors.New("oh no, it failed")
+        } else {
+            return "vegard", nil
+        }
+    }
+    </code></pre>
+                <pre><code>
+    func GetThatName() (result string) {
+        defer func() {
+            if len(result) == 0 {
+                result = "Fallback fallback fallback!"
+            }
+        }()
+        defer log.Info().Msg("Name was fetched!")
+        if name, err := VeryRandomName(true); err != nil {
+            return ""
+        } else {
+            return name
+        }
+    }
+                </code>
+                </pre>
+            </section>
+            <section>
+                <h2>Tests!</h2>
+                <ul class="list_none list_cramped">
+                    <li>Conventions!</li>
+                    <li>Files ending in <code>_test.go</code> (auto-excluded from builds)</li>
+                    <li>Functions declared as <code>fun TestXXXX() {}</code></li>
+                    <li>Run: <code>go test -coverpkg=./src/... ./src/...</code></li>
+                </ul>
+                <pre><code>
+    import (
+        "github.com/stretchr/testify/assert"
+        "testing"
+    )
+
+    func Test_ShouldNotContainSomething(t *testing.T) {
+        assert.False(t, DoesThisContainsTheWordSomething("some thing"))
+    }
+
+    func Test_ShouldContainSomething(t *testing.T) {
+        assert.True(t, DoesThisContainsTheWordSomething("yes something"))
+    }
+                </code></pre>
             </section>
         </section>
         <section>
@@ -252,21 +480,27 @@
                 <small>the hard truth</small>
             </section>
             <section>
-                <h2>Problems &amp; issues</h2>
+                <h2>Problems, issues &amp; Maintainability</h2>
             </section>
             <section>
-                <h2>Maintainability</h2>
+                <h2>Pros and cons using Go</h2>
+                <ul class="list_none">
+                    <li>?</li>
+                </ul>
             </section>
             <section>
-                <h2>Project-summary</h2>
+                <h2>Pros and cons using Go (in this initiative)</h2>
+                <ul class="list_none">
+                    <li>?</li>
+                </ul>
             </section>
             <section>
-                <h2>What if we made this in Kotlin?</h2>
+                <h2>What if we made this on jvm/Kotlin?</h2>
                 <h4>Would've been faster.</h4>
                 <h4>Would've been more known.</h4>
-                <h4>Would've been not as fun.</h4>
-                <h4>Would've not had this presentation.</h4>
-                <h4>Would've used more resource on k8s.</h4>
+                <h4>Would not have been as fun.</h4>
+                <h4>Would used more resource on k8s.</h4>
+                <h4>Would not had this presentation.</h4>
             </section>
         </section>
         <section>

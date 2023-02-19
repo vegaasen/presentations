@@ -57,6 +57,8 @@ ul.list_emoji {
 ul.list_none {
     list-style-type: none !important;
     margin-right: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 ul.list_cramped > li {
@@ -76,7 +78,7 @@ dl.shadowed > dt {
 }
 
 .text-success {
-    color: cadetblue;
+    color: cadetblue !important;
 }
 
 .text-shadow_nice {
@@ -91,8 +93,16 @@ dl.shadowed > dt {
     font-size: 0.2em !important;
 }
 
+.text-strike {
+    text-decoration: line-through;
+}
+
 div.text-rotate {
     display: inline-block;
     transform: rotate(-180deg);
     margin-left: 5px;
+}
+
+pre {
+    box-shadow: none !important;
 }
