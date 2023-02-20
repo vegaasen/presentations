@@ -75,8 +75,11 @@
             <section>
                 <h1>"Fun facts" for <img src="img/go.png" width="10%"/>?</h1>
                 <h4>From <img src="img/google-2007.png" width="5%" style="top: 18px; position:relative;"/>, duh</h4>
-                <h4>Easy to type</h4>
+                <h4>Easy to type (<code>go {command}</code>)</h4>
                 <h4>Short and "concise"</h4>
+                <h4>GC included</h4>
+                <h4>Unused <code>var</code> 👉 compile error</h4>
+                <h4>Always <code>by value</code> pointers!</h4>
             </section>
             <section>
                 <small>Inception</small>
@@ -86,6 +89,7 @@
                         <li>Complexity of other languages (<code>C++</code> etc.)</li>
                         <li>Compilation effectiveness</li>
                         <li>Execution effectiveness</li>
+                        <li>Missing structured conventions!</li>
                     </ul>
                 </small>
             </section>
@@ -104,7 +108,7 @@
                 <small><a href="https://go.dev/doc/go1.19">changelog 👈</a></small>
             </section>
             <section>
-                <h2>current</h2>
+                <h2>2023-></h2>
                 <p>v1.20</p>
                 <small><a href="https://go.dev/doc/go1.20">changelog 👈</a></small>
             </section>
@@ -144,20 +148,20 @@
                 </ul>
             </section>
             <section>
-                <h2>👋 to the Marianne app</h2>
+                <h2>👋 to the &laquo;Marianne app&raquo;</h2>
             </section>
             <section>
-                <h2>Discussions</h2>
-                <h3>Technology?</h3>
+                <h2>tech alternatives </h2>
                 <ul class="list_emoji list_think">
                     <li>React / Kotlin / Ktor</li>
                     <li>React / Kotlin / Spring</li>
                     <li>React / Kotlin / Micronaut</li>
-                    <li>React / Kotlin / Kweb</li>
                     <li>React / Kotlin@Native / Spring</li>
-                    <li>Svelte / Kotlin / Spring</li>
-                    <li>Remix</li>
                     <li>React / Go</li>
+                    <li>Svelte / Kotlin / Spring</li>
+                    <li>SvelteKit</li>
+                    <li>RedwoodJS</li>
+                    <li>Remix</li>
                 </ul>
             </section>
             <section>
@@ -224,7 +228,7 @@
                     <li>
                         Test (unit, integration and smokes)
                         <ul>
-                            <li>Testify</li>
+                            <li>Testify - (junit)</li>
                         </ul>
                     </li>
                 </ul>
@@ -243,8 +247,8 @@
             </section>
             <section>
                 <h2>Development timeline</h2>
-                <img src="img/timeline.gif"/>
-                <h3>"25.nov <-> 15.dec 2022 14:51"</h3>
+                <img src="img/timeline.gif" width="80%"/>
+                <h3>25.nov ... 15.dec 2022 14:51</h3>
             </section>
             <section>
                 <img src="img/one-hour-later.png"/>
@@ -254,6 +258,9 @@
                 <h1>prod</h1>
                 <h3>yo!</h3>
                 <h6>(15. december 2022 15:53)</h6>
+            </section>
+            <section>
+                <video controls preload="none" onclick="this.play()" src="img/demo.mov"/>
             </section>
             <section>
                 <h2>Extras after going to production?</h2>
@@ -283,15 +290,25 @@
             </section>
             <section>
                 <h4>initialize project</h4>
-                <pre>
-    <code>
+                <pre><code>
+    $ mkdir hello-world-go && cd hello-world-go
     $ go mod init github.com/vegaasen/hello-world-go
     $ cat go.mod
     module github.com/vegaasen/hello-world-go
 
     go 1.19
-    </code>
-                </pre>
+    </code></pre>
+            <pre><code>
+    $ go get github.com/labstack/echo/v4
+    $ cat go.mod
+    module github.com/vegaasen/hello-world-go
+
+    go 1.19
+
+    require (
+	    github.com/labstack/echo/v4 v4.10.0
+    )
+    </code></pre>
             </section>
             <section>
                 <h4>A few basics</h4>
@@ -338,6 +355,29 @@
                 </pre>
             </section>
             <section>
+                <h4>Even more basics!</h4>
+                <h6>Pass by value <small>(new pointer)</small></h6>
+                <pre><code>
+    theAnswerToEverything := 41
+    Addition(theAnswerToEverything)
+    func Addition(someNumber int) {
+        someNumber++
+    }
+    println(theAnswerToEverything) //?
+                </code>
+                </pre>
+                <h6>Pass by reference [*+&amp;] <small>(same pointer)</small></h6>
+                <pre><code>
+    theAnswerToEverything := 41
+    Addition(&theAnswerToEverything)
+    func Addition(someNumber *int) {
+        *someNumber++
+    }
+    println(theAnswerToEverything) //?
+                </code>
+                </pre>
+            </section>
+            <section>
                 <h4>Functions?</h4>
                 <pre>
     <code>
@@ -360,16 +400,18 @@
                 <pre>
     <code>
     type Person struct {
-        FirstName   string  `json:"firstName" xml:"firstName"`
-        LastName    string  `json:"lastName" xml:"lastName"`
+        FirstName   string  `json:"firstName" xml:"FIRSTNAME"`
+        LastName    string  `json:"lastName" xml:"LASTNAME"`
         clever      bool
     }
-
-    Person{
-		FirstName: "Vegard",
-		LastName:  "Aasen",
-		clever:    false,
-	}
+    func (person Person) GetFullName string {
+        return fmt.Sprintf("%s %s", person.FirstName, person.LastName)
+    }
+    Person {
+        FirstName: "Vegard",
+        LastName:  "Aasen",
+        clever:    false,
+    }
     </code></pre>
             </section>
             <section>
@@ -391,7 +433,7 @@
         return fmt.Sprintf("%s %s", person.FirstName, person.LastName)
     }
 
-    func theName(ssin SomeSmartInterfaceName) {
+    func printTheName(ssin SomeSmartInterfaceName) {
         println(ssin.GetName())
     }
     </code>
@@ -414,7 +456,7 @@
                 </pre>
             </section>
             <section>
-                <h4>Exceptions &amp; Finally</h4>
+                <h4>Errors</h4>
                 <pre><code>
     func VeryRandomName(fail bool) (string, error) {
         if fail {
@@ -424,6 +466,9 @@
         }
     }
     </code></pre>
+            </section>
+            <section>
+                <h4>Finally (aka <code>defer</code>)</h4>
                 <pre><code>
     func GetThatName() (result string) {
         defer func() {
@@ -437,6 +482,29 @@
         } else {
             return name
         }
+    }
+                </code>
+                </pre>
+            </section>
+            <section>
+                <h4>(Co)/Goroutines</h4>
+                <h6>Lightweight thread execution</h6>
+                <pre><code>
+    package main
+    import (
+        "strconv"
+        "time"
+    )
+    func Addition(someNumber int) int {
+        someNumber++
+        println("Number after complex maths: " + strconv.Itoa(someNumber))
+        return someNumber
+    }
+    func main() {
+        someNumber := 42
+        go Addition(someNumber)
+        println(someNumber)
+        time.Sleep(time.Second)
     }
                 </code>
                 </pre>
@@ -464,6 +532,16 @@
     }
                 </code></pre>
             </section>
+            <section>
+                <h4>bundle-size 💥</h4>
+                <img src="img/docker-ls.png" width="50%"/>
+                <div>
+                    <small>atleast in comparsion with jvm</small>
+                </div>
+            </section>
+            <section>
+                <h2>+++++</h2>
+            </section>
         </section>
         <section>
             <p><img src="img/go.png" width="100px"/></p>
@@ -484,19 +562,24 @@
             </section>
             <section>
                 <h2>Pros and cons using Go</h2>
-                <ul class="list_none">
-                    <li>?</li>
+                <ul class="list_none list_emoji list_positive">
+                    <li>Lightning fast</li>
+                    <li>Simple to get started</li>
+                    <li>Few components</li>
+                    <li>Small language, easy to grasp</li>
+                    <li>Code-style conventions included</li>
                 </ul>
-            </section>
-            <section>
-                <h2>Pros and cons using Go (in this initiative)</h2>
-                <ul class="list_none">
-                    <li>?</li>
+                <ul class=" list_emoji list_negative">
+                    <li>Verbose at times</li>
+                    <li>Not one-size-fit-all</li>
+                    <li>Quirks included</li>
+                    <li>Not one-size-fit-all</li>
+                    <li>Dependencies is..odd</li>
                 </ul>
             </section>
             <section>
                 <h2>What if we made this on jvm/Kotlin?</h2>
-                <h4>Would've been faster.</h4>
+                <h4>Would've been (slightly) faster (maybe).</h4>
                 <h4>Would've been more known.</h4>
                 <h4>Would not have been as fun.</h4>
                 <h4>Would used more resource on k8s.</h4>
@@ -504,12 +587,17 @@
             </section>
         </section>
         <section>
-            <h2>Resources 🔍</h2>
-            <h4><a href="https://gobyexample.com/">gobyexample.com</a></h4>
-            <h4><a href="https://go.dev/tour/h4st">go.dev/tour/h4st</a></h4>
-            <h4><a href="https://pkg.go.dev/">pkg.go.dev</a></h4>
-            <h4><a href="https://go.dev/play/">go.dev/play</a></h4>
-            <h3><a href="https://gophercon.eu/">gophercon</a> in june (26-29) in Berlin</h3>
+            <section>
+                <h2>Resources 🔍</h2>
+                <h4><a href="https://gobyexample.com/">gobyexample.com</a></h4>
+                <h4><a href="https://go.dev/tour/h4st">go.dev/tour/h4st</a></h4>
+                <h4><a href="https://pkg.go.dev/">pkg.go.dev</a></h4>
+                <h4><a href="https://go.dev/play/">go.dev/play</a></h4>
+                <h3><a href="https://gophercon.eu/">gophercon</a> in june (26-29) in Berlin</h3>
+            </section>
+            <section>
+                <img src="img/tiobe.png" width="70%"/>
+            </section>
         </section>
         <section>
             <h3>

@@ -45,6 +45,14 @@ ul.list_think > li:before {
     content: '🤔';
 }
 
+ul.list_negative > li:before {
+    content: '😐';
+}
+
+ul.list_positive > li:before {
+    content: '👊';
+}
+
 ul.list_emoji > li:before {
     margin-left: -20px;
     margin-right: 10px;
