@@ -27,12 +27,13 @@ Yes, I can provide an example setup for a presentation about how a project went.
     * Summarize the key points of the presentation
    * End with a call to action or a next step
 
+# Gjennomgang demo?
 
-hm, er det no spes dere synes jeg skal ha med i presentasjonen? litt uskker på åssen presentasjon detta blir :stuck_out_tongue:
-Så tar å tar med prosjektet vårt, hva er målet, at det er lite, og at vi vurderte div greier
-så tar jeg med å sier litt åssen det gikk med gjennomføringen vår, bakgrunnen vår i go
-og så kanskje ta en liten intro til hva go er
-så vise litt fra prosjektet
-kanskje deploye noe fjas
-så ta en oppsummering, konklusjon av prosjekt og opplevd feil
-+sammenligning om man gjorde detta i Kotlin/jvm
+1. Gå til cs-pup-change
+   2. (Ha det åpent i bakgrunnen)
+3. Gå gjennom hovedseksjonene (`main.go`)
+4. Gå gjennom hent-sporing flyt + regel-flyt (`rulesRoutes.go`)
+5. Gå gjennom ordre-flyt (`orderRoutes.go`)
+6. Gå gjennom metrikker (`metrics.go`)
+7. Gå gjennom k8s-config og buildfile (duh..)
+8. Done 🤷‍♂️
