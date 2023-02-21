@@ -444,13 +444,13 @@
                 <pre><code>
     type PersonType string
     const (
-        Short Type = "short"
-        Long  Type = "long"
+        Short PersonType = "short"
+        Long  PersonType = "long"
     )
     type Person struct {
         FirstName   string  `json:"firstName" xml:"firstName"`
         LastName    string  `json:"lastName" xml:"lastName"`
-        PersonType  Type
+        Type  PersonType
     }
     </code>
                 </pre>
